@@ -225,6 +225,10 @@ td.bay-rating {
 .comment1 .preordered,
 .comment1 .notifysale,
 .comment1 .wishlistpriority1,
+.comment1 .wishlistpriority2,
+.comment1 .wishlistpriority3,
+.comment1 .wishlistpriority4,
+.comment1 .wishlistpriority5,
 .comment1 .wanttobuy,
 .comment1 .want {
 	padding: 2px 4px;
@@ -237,7 +241,11 @@ td.bay-rating {
 .comment1 .prevowned img,
 .comment1 .preordered img,
 .comment1 .notifysale img,
-.comment1 .wishlistpriority1 img,
+.comment1 .wishlistpriority1 img
+.comment1 .wishlistpriority2 img
+.comment1 .wishlistpriority3 img
+.comment1 .wishlistpriority4 img,
+.comment1 .wishlistpriority5 img
 .comment1 .wanttobuy img,
 .comment1 .want img {
 	position: relative;
@@ -251,6 +259,10 @@ td.bay-rating {
 .comment1 .preordered img[src*="geeklogo.png"],
 .comment1 .notifysale img[src*="geeklogo.png"],
 .comment1 .wishlistpriority1 img[src*="geeklogo.png"],
+.comment1 .wishlistpriority2 img[src*="geeklogo.png"],
+.comment1 .wishlistpriority3 img[src*="geeklogo.png"],
+.comment1 .wishlistpriority4 img[src*="geeklogo.png"],
+.comment1 .wishlistpriority5 img[src*="geeklogo.png"],
 .comment1 .wanttobuy img[src*="geeklogo.png"],
 .comment1 .want img[src*="geeklogo.png"] {
    margin-left: 8px;
@@ -291,7 +303,23 @@ td.bay-rating {
 }
 
 .wishlistpriority1 .game-year::after {
-	content: "Wishlist";
+	content: "Wishlist (1)";
+}
+
+.wishlistpriority2 .game-year::after {
+	content: "Wishlist (2)";
+}
+
+.wishlistpriority3 .game-year::after {
+	content: "Wishlist (3)";
+}
+
+.wishlistpriority4 .game-year::after {
+	content: "Wishlist (4)";
+}
+
+.wishlistpriority5 .game-year::after {
+	content: "Wishlist (5)";
 }
 
 .wanttobuy .game-year::after {

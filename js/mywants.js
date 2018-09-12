@@ -137,4 +137,6 @@ window.addEventListener("scroll", evt => {
 
 	scrollingHeader.style.display = hideScrollingHeader ? "none" : "block";
 	tableHeader.style.visibility = hideScrollingHeader ? "visible" : "hidden";
+
+	scrollingHeader.style.left = -window.pageXOffset + "px";
 });

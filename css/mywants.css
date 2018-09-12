@@ -349,11 +349,21 @@ div#cellinfo:empty {
 	position: fixed;
 	display: none;
 	top: 166px;
-	left: 8px;
+	margin-left: 8px;
 	width: 200%;
 	z-index: 2;
 	clip-path: inset(-123px -400px 109px 0);
-	pointer-events: none;
+}
+
+.scrolling-header::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: -400px;
+	width: 100%;
+	height: 500px;
+	display: block;
+	background-color: rgba(255, 255, 255, 0.75);
 }
 
 .scrolling-header .scrolling-column {

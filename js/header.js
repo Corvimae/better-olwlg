@@ -95,7 +95,7 @@ document.querySelector(".user-dropdown-toggle").addEventListener("mouseout", evt
 const footer = document.createElement("div");
 
 footer.innerHTML = `
-Improvements from <a href="https://boardgamegeek.com/acceptableice">acceptableice</a>'s <a href="https://github.com/acceptableice/better-olwlg">Better OLWGL</a>.
+Improvements from <a href="https://boardgamegeek.com/user/acceptableice">AcceptableIce</a>'s <a href="https://github.com/acceptableice/better-olwlg">Better OLWGL</a>.
 <a href="https://icons8.com">Icon pack by Icons8</a>.
 `;
 

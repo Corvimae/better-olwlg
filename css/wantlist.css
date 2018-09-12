@@ -179,7 +179,12 @@
 }
 
 .description .details .owner {
+	display: flex;
 	margin-right: 4px;
+}
+
+.description .details .owner .avatar {
+	margin-left: 4px;
 }
 
 .description .details .nationality {
@@ -539,4 +544,43 @@ img[src*="photo.gif"] {
 
 .main-content br {
 	display: none;
+}
+
+.listing-change-original-alert {
+	order: 0;
+}
+
+.listing-change-new-alert {
+	order: 2;
+}
+
+.listing-change-original-listing {
+	order: 1;
+	padding: 0 4px;
+}
+
+.listing-change-new-listing {
+	order: 3;
+	padding: 0 4px;
+}
+
+.update-timestamps-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.update-timestamps-container input {
+	max-width: 280px;
+	margin: 0 auto;
+}
+
+.update-timestamps-info {
+	order: -1;
+}
+
+.update-timestamps-info img {
+	position: relative;
+	top: 6px;
+	height: 24px !important;
+	width: 24px;
 }

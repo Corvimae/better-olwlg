@@ -1,7 +1,7 @@
 function addColumnNames(row) {
 	const tableColumns = ["geeklist-number", "description", "rank", "rating", "bay-rating"];
 
-	row.querySelectorAll("td, th").forEach((td, index) => {
+	row.querySelectorAll(":scope > td, :scope > th").forEach((td, index) => {
 		td.classList.add(tableColumns[index]);
 	});
 }
@@ -97,7 +97,7 @@ function addInstructionDivNames() {
 		{
 			matches: window.modifyDiv.requireText("Icon guide", "text"),
 			combineRest: "div",
-			combineUntil: node => node.tagName === "TABLE",
+			combineUntil: node => node.tagName === "TABLE" || node.tagName === "FORM",
 			className: ["guide-panel", "icon-guide"],
 			childRules: [
 				{
@@ -119,7 +119,7 @@ function addInstructionDivNames() {
 			]
 		}
 	];
-	
+
 	window.modifyDiv(contentDiv, divModifications);
 }
 
@@ -216,6 +216,29 @@ function insertDescriptionContainer(row) {
 
 	container.classList.add("description-contents");
 
+	// If there's a table in the 2nd cell, it's displaying a difference; we need to kill the table.
+	if(row.querySelector("td:nth-of-type(2) table")) {
+		const cell = row.querySelector("td:nth-of-type(2)");
+		const subCellClasses = [
+			["alert", "info", "single-line", "listing-change-original-alert"],
+			["alert", "info", "single-line", "listing-change-new-alert"],
+			"listing-change-original-listing",
+			"listing-change-new-listing"
+		];
+
+		cell.querySelectorAll("td").forEach((subCell, index) => {
+			const subContainer = document.createElement("div");
+
+			subContainer.classList.add.apply(subContainer.classList, Array.isArray(subCellClasses[index]) ? subCellClasses[index] : [subCellClasses[index]]);
+
+			[].slice.apply(subCell.childNodes).forEach(node => subContainer.appendChild(node));
+
+			cell.append(subContainer);
+		});
+
+		cell.querySelector("table").remove();
+	}
+
 	[].slice.apply(descriptionElement.childNodes).forEach(child => {
 		container.appendChild(child);
 	});
@@ -240,6 +263,7 @@ function formatGameInfo(row) {
 		"play-time",
 		"trade"
 	];
+
 	const gameInfoElement = row.querySelector(".oi");
 	const lastItemIndex = gameInfoElement.childNodes.length - 1;
 
@@ -275,7 +299,7 @@ function addClickActionOverrides() {
 
 	script.type = "text/javascript";
 	script.src = chrome.extension.getURL("js/wantlist-overrides.js");
-	
+
 	document.body.appendChild(script);
 }
 
@@ -293,7 +317,7 @@ function addUserInfoBox() {
 	closeButton.className = "user-card-close";
 	closeButton.addEventListener("click", () => {
 		const frameBox = document.querySelector("#user-card");
-		
+
 		frameBox.classList.remove("visible");
 		frameBox.style.left = null;
 		frameBox.style.top = null;
@@ -320,12 +344,48 @@ function cleanUpPage() {
 	}
 }
 
+function styleSubmitButtons() {
+	const submitButtonNames = [
+		"updatetimestamps"
+	];
+
+	submitButtonNames.forEach(buttonName => {
+		const button = document.querySelector(`input[name=${buttonName}]`);
+
+		if(button) button.classList.add("submit-button");
+	});
+}
+
+function modifyForViewChanged() {
+	const modifications = [
+		{
+			matches: node => {
+				const previousSibling = node.previousElementSibling;
+
+				return previousSibling && previousSibling.tagName === "INPUT" && previousSibling.name === "updatetimestamps";
+			},
+			combineRest: "div",
+			className: ["alert", "info", "update-timestamps-info"]
+		}
+	];
+
+	document.querySelectorAll("p").forEach(possibleNode => {
+		if(possibleNode.querySelector("input[name=updatetimestamps]")) {
+			window.modifyDiv(possibleNode, modifications);
+
+			possibleNode.classList.add("update-timestamps-container");
+		}
+	});
+}
+
 document.onreadystatechange = evt => {
 	if(document.readyState === "complete") {
 		addInstructionDivNames();
-		addColumnNames(document.querySelector("#geeklist thead tr"));
+		addColumnNames(document.querySelector("#geeklist > thead > tr"));
+		styleSubmitButtons();
+		modifyForViewChanged();
 
-		document.querySelectorAll("#geeklist tbody tr").forEach(row => {
+		document.querySelectorAll("#geeklist > tbody > tr").forEach(row => {
 			addColumnNames(row);
 			groupDescriptionTopRow(row);
 			insertDescriptionContainer(row);

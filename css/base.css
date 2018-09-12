@@ -174,3 +174,21 @@ a {
 	display: inline-block;
 	font-size: 0.7rem;
 }
+
+.submit-button {
+	margin: 12px 8px 12px 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 1rem;
+	padding: 8px 16px;
+	transition: background-color 0.25s;
+	font-family: "Muli", Helvetica, sans-serif;
+	font-size: 1.25rem;
+	margin-top: 8px;
+}
+
+.submit-button:hover,
+.submit-button:focus {
+	background-color: #f0f0f0;
+}

@@ -3,7 +3,7 @@ document.querySelector(".autocheckinfo").classList.add("alert", "info");
 document.querySelectorAll("#wants th").forEach(header => {
 	const innerDiv = document.createElement("div");
 	const innerSpan = document.createElement("span");
-	
+
 	const columns = [];
 
 	(header.querySelector("tt") || header).childNodes.forEach(child => {
@@ -71,7 +71,7 @@ const mainModifications = [
 		transformHTML: content => {
 			const [itemMatch, itemsChanged] = content.match(/([0-9]*) item/);
 			const [clickMatch, clickHereLink] = content.match(/<a href="([\S]*)">click here<\/a>/);
-			
+
 			return `${itemsChanged} ${itemsChanged === 1 ? "item has" : "items have"} been edited by their owners after you added ` +
 				`them to your wantlist. Please examine the items marked with <img src="images/changed.png" height="24"> and ` +
 				`<a href="${clickHereLink}"> click here.</a>`;
@@ -88,13 +88,6 @@ const content = document.querySelector(".header").nextElementSibling;
 content.classList.add("content");
 
 window.modifyDiv(content, mainModifications);
-
-const tableHeaderDecoration = document.createElement("div");
-const table = document.querySelector("#wants");
-
-tableHeaderDecoration.classList.add("table-header-decoration");
-
-table.parentElement.insertBefore(tableHeaderDecoration, table);
 
 const helpText = document.querySelector("#gamedesc");
 
@@ -118,3 +111,30 @@ const duplicateProtectionModifications = [
 window.modifyDiv(document.querySelector("#dummy"), duplicateProtectionModifications);
 
 document.querySelectorAll(".ondummy2").forEach(warning => warning.classList.add("alert", "error"));
+
+const header = document.querySelector("tr.head");
+const scrollingHeader = document.createElement("div");
+
+header.querySelectorAll("th").forEach(column => {
+	const scrollingColumn = document.createElement("div");
+
+	scrollingColumn.classList.add("scrolling-column");
+	scrollingColumn.innerHTML = column.innerHTML;
+	scrollingColumn.style.width = column.offsetWidth + "px";
+
+	scrollingHeader.appendChild(scrollingColumn);
+});
+
+scrollingHeader.classList.add("scrolling-header");
+
+document.querySelector("#table").appendChild(scrollingHeader);
+
+const wantsTable = document.querySelector("#wants");
+const tableHeader = document.querySelector("#wants thead tr");
+
+window.addEventListener("scroll", evt => {
+	const hideScrollingHeader = wantsTable.getBoundingClientRect().top > 54;
+
+	scrollingHeader.style.display = hideScrollingHeader ? "none" : "block";
+	tableHeader.style.visibility = hideScrollingHeader ? "visible" : "hidden";
+});

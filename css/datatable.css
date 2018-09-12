@@ -1,0 +1,33 @@
+table {
+	border-collapse: collapse;
+	border: none;
+	font-size: 0.8rem;
+}
+
+table:first-of-type {
+	margin-top: 8px;
+}
+
+th {
+	padding: 8px 14px;
+	border: none;
+	background-color: #ede4ff;
+}
+
+thead th:first-child {
+	border-top-left-radius: 4px;
+}
+
+thead th:last-child {
+	border-top-right-radius: 4px;
+}
+
+tbody td {
+	padding: 4px 8px;
+	border: none;
+	text-align: center;
+}
+
+tbody tr:nth-of-type(2n) {
+	background-color: #f0f0f0;
+}

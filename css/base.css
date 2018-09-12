@@ -1,0 +1,176 @@
+@font-face {
+ font-family: "Muli";
+ font-style: normal;
+ font-weight: 700;
+ src: url("chrome-extension://__MSG_@@extension_id__/fonts/Muli-Regular.ttf"); 
+}
+
+html {
+	font-family: "Muli", Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+body {
+	font-size: 1rem !important;
+}
+
+hr {
+	border: none;
+	height: 1px;
+	background-color: #ccc;
+}
+
+a {
+	color: #4a6eb3;
+	text-decoration: none;
+}
+
+.alert {
+	display: block;
+	position: relative;
+	width: 90%;
+	max-width: 920px;
+	min-height: 80px;
+	margin: 8px auto;
+	padding: 20px 20px 20px 80px;
+	background-color: #fff;
+	border: 1px solid #333;
+	color: #333;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.alert > h2,
+.alert > h3 {
+	margin-top: 0;
+}
+
+.alert.warning {
+	color: #6b6217;
+	background-color: #fff8be;
+	border-color: #6b6217;
+}
+
+.alert.info {
+	color: #0e2335;
+	background-color: #e0f1ff;
+	border-color: #0e2335;
+}
+
+.alert.error {
+	background-color: #ffe1e1;
+	border-color: #400000;
+	color: #400000;
+}
+
+.alert.success {
+	background-color: #caffc4;
+	border-color: #084e00;
+	color: #084e00;
+}
+
+.alert::before {
+	content: "";
+	position: absolute;
+	display: inline-block;
+	top: 0;
+	transform: translate(0, 50%);
+	left: 20px;
+	width: 40px;
+	height: 40px;
+	background-size: cover;
+	margin-right: 24px;
+}
+
+.alert.small {
+	font-size: 0.75rem;
+}
+
+.alert.medium {
+	font-size: 1rem;
+}
+
+.alert.large {
+	font-size: 1.25rem;
+}
+
+.alert.single-line {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+	
+.alert.warning::before {
+	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/warning.png");
+}
+
+.alert.info::before {
+	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/alert.png");
+}
+
+.alert.error::before {
+	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/error.png");
+}
+
+.alert.clock::before {
+	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/clock-alert.png");
+}
+
+.alert.success::before {
+	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/success.png");
+}
+
+.guide-panel {
+	display: block;
+	position: relative;
+	width: 90%;
+	max-width: 920px;
+	margin: 8px auto;
+	padding: 20px;
+	background-color: #fafafa;
+	border: 1px solid #333;
+	color: #333;
+	border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.guide-panel-title {
+	display: block;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	color: #666;
+	margin-top: -12px;
+	margin-bottom: 12px;
+}
+
+.icon-guide br {
+	display: none;
+}
+
+.icon-group:not(:last-of-type) {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+.icon-group img {
+	width: 40px !important;
+	height: 40px !important;
+	margin-right: 20px;
+}
+
+.icon-guide-note {
+	font-style: italic;
+  font-size: 0.8rem;
+}
+
+.info-pill {
+	border: 1px solid #333;
+	padding: 2px 6px;
+	border-radius: 4px;
+	background-color: #ccc;
+	margin: 2px 4px;
+	display: inline-block;
+	font-size: 0.7rem;
+}

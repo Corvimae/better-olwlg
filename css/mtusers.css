@@ -1,0 +1,47 @@
+table {
+	font-size: 0.9rem;
+	width: 100%;
+	max-width: 920px;
+	margin: 0 auto;
+}
+
+table tr td {
+	position: relative;
+}
+
+.cell-contents {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.cell-contents img {
+	margin: 0 4px;
+}
+
+img[src*="flags"] {
+	margin-right: 12px;
+}
+
+td:nth-of-type(2) .cell-contents {
+	justify-content: center;
+}
+
+.guide-panel.related-trade,
+.related-trade td {
+	background-color: #feffae !important;
+}
+
+.guide-panel.edited-wants,
+.edited-wants td {
+	background-color: #ffe0e6 !important;
+}
+
+.guide-panel.related-trade {
+	border: 1px solid #969800;
+}
+
+.guide-panel.edited-wants {
+	border: 1px solid #b97986;
+}

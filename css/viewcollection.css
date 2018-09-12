@@ -1,0 +1,34 @@
+center {
+	display: none;
+}
+
+h3 {
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.resync-button {
+	display: flex;
+	width: 260px;
+	height: 100%;
+	padding: 8px 12px;
+	border: 1px solid #126b00;
+	border-radius: 4px;
+	background-color: #bbffad;
+	align-items: center;
+	box-sizing: border-box;
+	color: #126b00;
+	transition: background-color 0.25s;
+	margin: 0 auto;
+	justify-content: center;
+	font-size: 1.25rem;
+}
+
+.resync-button:hover,
+.resync-button:focus {
+	background-color: #e5ffe5;
+}
+
+.flag-counts {
+	margin: 12px 0;
+}

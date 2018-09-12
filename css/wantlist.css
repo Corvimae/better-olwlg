@@ -1,0 +1,542 @@
+.icon {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#geeklist {
+	display: flex;
+	width: 95%;
+	min-width: 480px;
+  flex-flow: column nowrap;
+  margin: 0.5rem 2.5%;
+  line-height: 1.5;
+	flex: 1 1 auto;
+	border: none;
+	border-collapse: collapse;
+}
+
+#geeklist > thead > tr,
+#geeklist > tbody > tr {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#geeklist > thead > tr > th {
+	border: none;
+	background-color: #f2f2f2;
+}
+
+#geeklist > tbody > tr > td {
+	display: flex;
+  flex-flow: row;
+  padding: 0.5em;
+  min-width: 0px;
+	border: 1px solid #999;
+	border-right: none;
+	border-top: none;
+}
+
+#geeklist > thead > tr > th,
+#geeklist > tbody > tr > td {
+  width: 80px;
+  display: block;
+	box-sizing: border-box;
+}
+
+#geeklist > thead > tr > th:last-child,
+#geeklist > tbody > tr > td:last-child {
+  border-bottom: 1px solid #d0d0d0;
+}
+
+#geeklist th > td {
+  white-space: normal;
+  justify-content: center;
+}
+
+#geeklist > tbody > tr:nth-of-type(even) {
+  background-color: #f2f2f2;
+}
+
+#geeklist > tbody > tr:nth-of-type(odd) {
+  background-color: #ffffff;
+}
+
+#geeklist > tbody > tr > td:last-of-type {
+	border-right: 1px solid #999;
+}
+
+#geeklist > thead > tr > th {
+	background-color: #ccc;
+}
+
+#geeklist > thead tr > th .vertical {
+	display: none;
+}
+
+#geeklist thead tr .rating::before,
+#geeklist thead tr .bay-rating::before {
+	font-family: 'Muli', Helvetica, sans-serif;
+	visibility: visible;
+	line-height: 22px;
+}
+
+#geeklist thead tr .geeklist-number > br {
+	display: none;
+}
+
+#geeklist thead tr .rating::before {
+	content: "Rating";
+}
+
+#geeklist thead tr .bay-rating::before {
+	content: "Bay";
+}
+
+#geeklist thead tr > th > span[id^=sorttable_] {
+	padding: 0 4px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Geeklist Number column */
+#geeklist tbody tr .geeklist-number {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 4px 4px;
+}
+
+#geeklist tbody tr .geeklist-number > a {
+	padding: 4px 0;    
+}
+
+/** Add button **/
+#geeklist tbody tr .geeklist-number > img:nth-of-type(1) {
+	padding: 4px 0;
+}
+
+#geeklist tbody tr .geeklist-number > br {
+	display: none;
+}
+
+/* Game Details column */
+#geeklist tbody tr .description {
+	display: relative;
+	margin: 0;
+	padding: 0;
+}
+
+#geeklist tbody tr .description .description-contents {
+	position: relative;
+	display: flex;
+	height: 100%;
+	width: 100%;
+	flex-direction: column;
+}
+
+#geeklist tbody tr .description .details {
+	padding: 4px;
+}
+
+#geeklist tbody tr .description .game-info {
+	display: block;
+	width: 100%;
+	margin: 4px 0 0;
+	padding: 2px 4px;
+	box-sizing: border-box;
+	background-color: transparent;
+}
+
+#geeklist tbody tr .description .comment1 {
+	width: 100%;
+	padding: 4px 4px;
+	background-color: transparent;
+	box-sizing: border-box;
+	flex-grow: 1;
+	align-self: stretch;
+	min-height: 38px;
+}
+
+.description {
+  flex-grow: 1;
+  align-self: stretch;
+  flex-shrink: 1;
+}
+
+.description .details {
+	display: flex;
+  align-items: center;
+}
+
+.description .details .game-year {
+	margin: 0 8px 0 4px;
+}
+
+.description .details .ships-from-text {
+	margin: 0 4px 0 6px;
+}
+
+.description .details .owner {
+	margin-right: 4px;
+}
+
+.description .details .nationality {
+	margin-right: 4px;
+}
+
+.description .vi {
+	margin-top: 4px;
+	padding: 2px 8px;
+}
+
+td.rank,
+td.rating,
+td.bay-rating {
+  width: 60px;
+  text-align: center;
+}
+
+.description .game-info br {
+	display: none;
+}
+
+.description .game-info .player-count {
+	background-color: #d0efcb;
+  border-color: #19560f;
+}
+
+.description .game-info .collection-stat {
+	background-color: #fddaff;
+	border-color: #451048;
+	color: #7d1888;
+}
+
+.comment1 .default,
+.comment1 .own,
+.comment1 .wanttoplay,
+.comment1 .prevowned,
+.comment1 .preordered,
+.comment1 .notifysale,
+.comment1 .wishlistpriority1,
+.comment1 .wanttobuy,
+.comment1 .want {
+	padding: 2px 4px;
+	border-radius: 4px;
+}
+
+.comment1 .default img,
+.comment1 .own img,
+.comment1 .wanttoplay img,
+.comment1 .prevowned img,
+.comment1 .preordered img,
+.comment1 .notifysale img,
+.comment1 .wishlistpriority1 img,
+.comment1 .wanttobuy img,
+.comment1 .want img {
+	position: relative;
+	top: 6px;
+}
+
+.comment1 .default img[src*="geeklogo.png"],
+.comment1 .own img[src*="geeklogo.png"],
+.comment1 .wanttoplay img[src*="geeklogo.png"],
+.comment1 .prevowned img[src*="geeklogo.png"],
+.comment1 .preordered img[src*="geeklogo.png"],
+.comment1 .notifysale img[src*="geeklogo.png"],
+.comment1 .wishlistpriority1 img[src*="geeklogo.png"],
+.comment1 .wanttobuy img[src*="geeklogo.png"],
+.comment1 .want img[src*="geeklogo.png"] {
+   margin-left: 8px;
+}
+
+.in-collection .game-year::after {
+	position: relative;
+	width: auto;
+	height: 20px;
+	color: rgba(0, 0, 0, 0.75);
+	padding: 0 4px;
+	margin-left: 4px;
+	line-height: 20px;
+	font-size: 1em;
+	border: 1px solid rgba(0, 0, 0, 0.75);
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.own .game-year::after {
+	content: "Owned";
+}
+
+.wanttoplay .game-year::after {
+	content: "Want to Play";
+}
+
+.prevowned .game-year::after {
+	content: "Previously Owned";
+}
+
+.preordered .game-year::after {
+	content: "Preordered";
+}
+
+.notifysale .game-year::after {
+	content: "Notify Sales";
+}
+
+.wishlistpriority1 .game-year::after {
+	content: "Wishlist";
+}
+
+.wanttobuy .game-year::after {
+	content: "Want to Buy";
+}
+
+.want .game-year::after {
+	content: "Want in Trade";
+}
+
+.default .game-year::after {
+	content: "Sweetner (Not marked in your collection)";
+}
+
+/** Icon sizes **/
+img[src="hello.gif"] {
+  width: 32px;
+}
+
+img[src="1click.png"],
+img[src="ok.gif"] {
+	width: 34px;
+	height: 34px;
+}
+
+img[src="e.gif"] {
+	position: relative;
+	width: 20px;
+	top: 5px;
+}
+
+img[src="arrow.gif"] {
+  height:32px;
+}
+
+img[src*="photo.gif"] {
+	width: 32px;
+}
+
+.comment1 img[src*="photo.gif"] {
+  position: relative;
+  top: 10px;
+}
+
+.noresponse {
+	border: 1px solid #7d1d1d;
+	margin: 8px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+#geeklist .rel {
+	position: absolute;
+	width: 100%;
+	top: -50%;
+}
+
+#geeklist .cw {
+	position: absolute;
+	left: -1px;
+	overflow: visible;
+	background-color: #abffba;
+	border: 1px solid #dddbda;
+	border-radius: 4px;
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16);		
+	padding: 4px;
+	width: calc(100% + 2px);
+	box-sizing: border-box;
+}
+
+#geeklist .cw::before,
+#geeklist .cw::after {
+	width: 1rem;
+	height: 1rem;
+	position: absolute;
+	transform: rotate(45deg);
+	content: '';
+	background-color: inherit;
+	top: 50%;
+	left: -0.5rem;
+	margin-top: -0.5rem;
+}
+
+#geeklist .cw::after {
+	box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, 0.16);
+	z-index: -1;
+}
+
+#geeklist .cw span.tradefor {
+	color: #288439;
+}
+
+#geeklist .cw input[type="submit"],
+#geeklist .cw input[type="reset"] {
+	border: 1px solid #666;
+	background-color: #fcfcfc;
+	padding: 4px 8px;
+	border-radius: 4px;
+	text-transform: capitalize;
+	font-size: 1em;
+}
+
+#gamedesc {
+	top: auto;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	background-color: #f7f7f7;
+	box-shadow: -1px 1px 10px 3px rgba(0, 0, 0, 0.16);
+	border: none;
+}
+
+.gamedescframe {
+	border: none;
+}
+
+#gamedesc img[src*="redsquarex.gif"] {
+	position: absolute;
+	width: 20px;
+	top: 12px;
+	right: 20px;
+}
+
+#user-card {
+	position: absolute;
+	display: none;
+	width: 496px;
+	height: 500px;
+	background-color: transparent;
+	box-shadow: none;
+	z-index: 95;
+}
+
+#user-card.visible {
+	display: block;
+}
+
+#user-card .close {
+	top: 32px;
+	right: 28px;
+}
+
+#user-card-frame {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.user-card-close {
+	position: absolute;
+	top: 32px;
+	right: 24px;
+	width: 20px;
+	height: 20px;
+	background: url("chrome-extension://__MSG_@@extension_id__/icons/close.png"); 
+	background-size: cover;
+	border: none;
+}
+
+#editwants + p + div {
+    display: none;
+}
+
+.deadline-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.deadline-container .item-count,
+#editwants2 {
+	order: -1;
+}
+
+.deadline-container #editwants2 {
+	margin: 8px 0;
+}
+
+.item-count {
+	display: block;
+	margin: 0 auto 4px;
+	text-align: center;
+}
+
+.color-coding {
+	display: inline-block;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.65);
+	border-image: initial;
+	padding: 2px 6px;
+	border-radius: 4px;
+	margin: 4px 8px 4px 0;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+#editwants,
+#editwants2 {
+	position: relative;
+	height: 40px;
+}
+
+#editwants a,
+#editwants2 a {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	padding: 8px 12px;
+	border: 1px solid #126b00;
+	border-radius: 4px;
+	background-color: #bbffad;
+	align-items: center;
+	box-sizing: border-box;
+	color: #126b00;
+	transition: background-color 0.25s;
+}
+
+#editwants a:hover,
+#editwants a:focus,
+#editwants2 a:hover,
+#editwants2 a:focus {
+	background-color: #e5ffe5;
+}
+
+#editwants a img,
+#editwants2 a img {
+	margin-right: 16px;
+}
+
+#editwants h3 {
+	display: none;
+}
+
+#editwants a,
+#editwants2 a {
+	width: 280px;
+	margin: 0 auto;
+}
+
+.main-content img[src*="magglass.jpg"] {
+	position: relative;
+	top: 6px;
+	margin-left: 4px;
+}
+
+.hide-comments {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.main-content br {
+	display: none;
+}

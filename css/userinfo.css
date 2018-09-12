@@ -1,0 +1,94 @@
+body {
+	margin: 20px 8px 8px;
+	background-color: transparent;
+}
+
+
+.user-page {
+	display: flex;
+	flex-direction: column;
+	width: 480px;
+	padding: 16px;
+	background-color: #f8f8f8;
+	border-radius: 4px;
+	box-sizing: border-box;
+	box-shadow: rgba(0, 0, 0, 0.16) -1px 1px 10px 3px;
+}
+
+.user-page.fromProfile::before,
+.user-page.fromProfile::after {
+	display: none;
+}
+
+.user-page::before,
+.user-page::after {
+	width: 1rem;
+	height: 1rem;
+	position: absolute;
+	transform: rotate(135deg);
+	content: '';
+	background-color: inherit;
+	left: 50%;
+	top: 1rem;
+}
+
+.user-page::after {
+	box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, 0.16);
+	z-index: -1;
+}
+
+.user-name-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 8px;
+}
+
+.user-image {
+	width: 64px;
+	height: 64px;
+	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/profile.png"); 
+	margin-right: 16px;
+}
+
+.user-data {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-name {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 8px;
+}
+
+.user-name span {
+	font-size: 1.25rem;
+	margin-right: 8px;
+}
+
+.bgg-trade-statistics {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-bottom: 8px;
+}
+
+.statistic-block {
+	display: flex;
+	flex-direction: column;
+}
+
+.statistic-block .statistic-name {
+	text-transform: uppercase;
+	color: #666;
+	font-size: 0.75rem;
+	margin-bottom: 4px;
+}
+
+.math-trade-statistic {
+	margin-bottom: 8px;
+}
+

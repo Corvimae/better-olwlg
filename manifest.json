@@ -1,0 +1,90 @@
+{
+    "name": "Better OLWLG",
+    "version": "1.0",
+    "description": "Makes the Online Want List Generator prettier!",
+		"manifest_version": 2,
+		"permissions": [
+			"webRequest",
+			"webRequestBlocking",
+			/*"*://cf.geekdo-static.com/",*/
+			"*://bgg.activityclub.org/"
+		],
+		"background": {
+			"scripts": ["js/background.js"]
+		},
+		"content_scripts": [
+			{
+				"all_frames": true,
+				"css": ["css/base.css"],
+				"js": ["js/modifyDivs.js"],
+				"matches": ["*://bgg.activityclub.org/*"]
+			},
+			{
+				"css": ["css/header.css"],
+				"js": ["js/header.js"],
+				"matches": ["*://bgg.activityclub.org/*"]
+			},
+			{
+				"run_at": "document_start",
+				"css": ["css/wantlist.css"],
+				"js": ["js/wantlist.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/viewlist.cgi*"]
+			},
+			{
+				"all_frames": true,
+				"css": ["css/datatable.css", "css/prices.css"],
+				"js": ["js/prices.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/prices.cgi*"]
+			},
+			{
+				"all_frames": true,
+				"css": ["css/userinfo.css"],
+				"js": ["js/userinfo.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/userinfo.cgi*"]
+			},
+			{
+				"css": ["css/mywants.css"],
+				"js": ["js/mywants.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/mywants.cgi*"]
+			},
+			{
+				"css": ["css/home.css"],
+				"js": ["js/home.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg*"],
+				"exclude_matches": ["*://bgg.activityclub.org/olwlg*.cgi*"]
+			},
+			{
+				"css": ["css/profile.css"], 
+				"js": ["js/profile.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/profile.cgi*"]
+			},
+			{
+				"css": ["css/datatable.css", "css/mtusers.css"],
+				"js": ["js/mtusers.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/mtusers.cgi*"]
+			},
+			{
+				"js": ["js/getcollection.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/getcollection-top.cgi*"]
+			},
+			{
+				"css": ["css/datatable.css", "css/viewcollection.css"],
+				"js": ["js/getcollection.js", "js/viewcollection.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/viewcollection.cgi*"]
+			},
+			{
+				"css": ["css/home.css"],
+				"js": ["js/home.js", "js/mthistory.js"],
+				"matches": ["*://bgg.activityclub.org/olwlg/mthistory.cgi*"]
+			},
+			{
+				"css": ["css/datatable.css"],
+				"matches": ["*://bgg.activityclub.org/olwlg/trades-compiled.cgi*"]
+			}
+		],
+		"web_accessible_resources": [
+			"fonts/Muli-Regular.ttf",
+			"icons/*.png",
+			"js/wantlist-overrides.js"
+		]
+  }

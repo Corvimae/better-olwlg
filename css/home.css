@@ -1,0 +1,104 @@
+.news-box {
+	background-color: #fafafa !important;
+	max-width: 1440px;
+	padding: 16px;
+}
+
+.news-box li {
+	margin: 4px 0;
+}
+
+.welcome-message {
+	text-align: center;
+}
+
+div:not(.news-box) > ul,
+div:not(.news-box) > ol {
+	list-style: none;
+  padding: 0 20px;
+}
+
+.trade-row {
+	display: flex;
+	flex-direction: column;
+	padding: 4px 10px;
+}
+
+.trade-row br {
+	display: none;
+}
+
+ol .trade-row:not(:last-of-type),
+ul .trade-row:not(:last-of-type) {
+	margin-bottom: 20px;
+}
+
+.trade-statistics {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 8px;
+	align-items: center;
+}
+
+.trade-statistics img[src*="arrow.gif"] {
+	height: 24px;
+	margin-right: 4px;
+}
+
+.trade-link {
+	margin-right: 2px;
+}
+
+.trade-owner {
+	margin-right: 2px;
+}
+
+.trade-options {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.trade-options > a {
+	margin-right: 8px;
+}
+
+a.trade-link-action {
+	border: 1px solid #999;
+	border-radius: 4px;
+	background-color: #f0f0f0;
+	padding: 4px 8px;
+	color: #333;
+	text-transform: capitalize;
+	transition: background-color 0.25s;
+}
+
+a.trade-link-action:hover,
+a.trade-link-action:focus {
+	background-color: #fff;
+}
+
+.trade-link-alert {
+	position: relative;
+	width: 250px;
+	padding: 4px 20px 4px 52px;
+	min-height: 40px;
+	flex-grow: 1;
+	align-self: stretch;
+	min-width: 200px;
+	background-color: #ffe1e1 !important;
+}
+
+.trade-link-alert::before {
+	left: 10px;
+	width: 32px;
+	height: 32px;
+	margin-right: 10px;
+	transform: translate(0, 25%);
+}
+
+span.deadline {
+	color: #6b6217;
+	background-color: #fff8be;
+	border-color: #6b6217;
+}

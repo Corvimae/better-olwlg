@@ -1,0 +1,228 @@
+form {
+	margin-bottom: 24px;
+}
+
+form > table {
+	width: 100%;
+	max-width: 920px;
+	border-collapse: collapse;
+	border: none;
+	margin: 0 auto;
+}
+
+form > table td {
+	padding: 8px 4px 16px;
+	border: none;
+}
+
+table label {
+	display: block;
+	color: #333;
+	margin-bottom: 4px;
+}
+
+table select {
+	-webkit-appearance: none;
+	appearance: none;
+	border: 1px solid #ccc;
+	padding: 8px 8px;
+	font-size: 1rem;
+	font-family: "Muli", Helvetica, sans-serif;
+}
+
+table .select {
+	position: relative;
+	display: inline-block;
+}
+
+table .select:after {
+	position: absolute;
+	content: "";
+	top: 17px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 5px solid transparent;
+	border-color: #333 transparent transparent transparent;
+}
+
+table .help-text {
+	display: block;
+	color: #666;
+	font-size: 0.8rem;
+	margin-top: 8px;
+}
+
+input[type="checkbox"] {
+	width: 1px;
+	height: 1px;
+	border: 0;
+	clip: rect(0 0 0 0);
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	pointer-events: auto;
+	width: 40px;
+	height: 40px;
+}
+
+.checkbox-interactable {
+	position: relative;
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	vertical-align: middle;
+	border: 1px solid #dddbda;
+	border-radius: 0.125rem;
+	background: white;
+	-webkit-transition: border 0.1s linear, background-color 0.1s linear;
+	transition: border 0.1s linear, background-color 0.1s linear;
+}
+
+.checkbox-label {
+	position: relative;
+	display: inline;
+	vertical-align: middle;
+	font-size: 0.9rem;
+	color: #333;
+	margin: 8px;
+	padding-top: 4px;
+}
+
+.checkbox-label img {
+	position: relative;
+	top: 4px;
+}
+
+input[type="checkbox"]:checked + .checkbox-label-container > .checkbox-interactable::after {
+	content: "";
+	position: absolute;
+	display: block;
+	left: 2px;
+	top: 2px;
+	width: 12px;
+	height: 12px;
+	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/checkbox-checkmark.png");
+	background-size: contain;
+}
+
+.auction-notification-container {
+	margin-left: 26px;
+	margin-top: 16px;
+}
+
+.auction-notification-container select {
+	width: 300px;
+}
+
+input[type="text"] {
+	font-size: 1rem;
+	padding: 4px 8px;
+	width: 100px;
+	height: 34px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	line-height: 0;
+}
+
+input[type="text"].input-with-units {
+	border-radius: 4px 0 0 4px;
+	text-align: right;
+}
+
+.input-units {
+	display: inline-block;
+	height: 34px;
+	background-color: #eaeaea;
+	border: 1px solid #ccc;
+	border-left: none;
+	border-radius: 0 4px 4px 0;
+	padding: 4px 8px;
+	vertical-align: top;
+	color: #666;
+	box-sizing: border-box;
+	line-height: 22px;
+}
+
+td > table {
+	border: none;
+	width: 100%;
+}
+
+.list-visibility-title {
+	color: #333;
+}
+
+.list-visibility-title img {
+	position: relative;
+	top: 4px;
+}
+
+.highlight-margin {
+	display: none;
+}
+
+.highlight-colors tbody {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.highlight-colors tr {
+	width: 50%;
+}
+
+.highlight-option {
+	width: 100%;
+	padding: 0;
+}
+
+.highlight-option input {
+	display: inline-block;
+	border-radius: 0 4px 4px 0;
+	border-left: none;
+	vertical-align: top;
+	margin-left: 0;
+	margin-left: -4px;
+}
+
+.color-block {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	border-radius: 4px 0 0 4px;
+	border: 1px solid #ccc;
+	border-right: none;
+	box-sizing: border-box;
+}
+
+#column-colors {
+	width: 100%;
+}
+
+.user-card {
+	display: block;
+	width: 500px;
+	height: 240px;
+	margin: 0 auto;
+	border: none;
+	overflow: visible;
+}
+
+input[name="submit"] {
+	display: block;
+	margin: 12px 8px 12px 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 1.25rem;
+	padding: 8px 16px;
+	transition: background-color 0.25s;
+	margin: 0 auto;
+}
+
+input[name="submit"]:hover,
+input[name="submit"]:focus {
+	background-color: #f0f0f0;
+}

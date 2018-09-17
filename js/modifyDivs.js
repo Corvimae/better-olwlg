@@ -31,11 +31,11 @@ window.modifyDiv = (div, rules, processedNodes) => {
 					} else {
 						parent.appendChild(spanElement);
 					}
-					
+
 					if(window.modifyDiv.isTextNode(node)) {
 						parent.removeChild(node);
 					}
-					
+
 					modifiedNodes.push(spanElement.childNodes[0]);
 					node = spanElement;
 				}
@@ -68,7 +68,7 @@ window.modifyDiv = (div, rules, processedNodes) => {
 						const remainingElements = childNodes.slice(index);
 
 						remainingElements.forEach(item => subContainer.appendChild(item));
-						
+
 						parent.appendChild(subContainer);
 					}
 
@@ -96,17 +96,17 @@ window.modifyDiv = (div, rules, processedNodes) => {
 				if(rule.transformHTML) {
 					node.innerHTML = rule.transformHTML(node.innerHTML);
 				}
-				
+
 				if(rule.transform) {
 					rule.transform(node);
 				}
-				
+
 				if(rule.remove) {
 					node.parentElement.removeChild(node);
 				}
 
 				modifiedNodes.push(node);
-				
+
 				if(rule.combineRest) {
 					window.modifyDiv(node, rule.childRules || [], modifiedNodes);
 				} else if(!rule.wrap) {
@@ -147,7 +147,7 @@ function requireText(text, tag, matchingRule) {
 		if(tag) {
 			tagMatches = tagTarget === "text" ? window.modifyDiv.isTextNode(node) : tagName === tagTarget;
 		}
-		
+
 		return matchingRule(node, text) && tagMatches;
 	};
 }
@@ -177,6 +177,36 @@ window.modifyDiv.hasClass = function(className) {
 	return node => node.classList && node.classList.contains(className);
 };
 
+window.modifyDiv.convertImageToButton = function(image, className, altText) {
+	return {
+		matches: node => node.tagName === "IMG" && node.src.indexOf(image) !== -1,
+		wrap: "button",
+		className: className ? ["image-button", className] : ["image-button"],
+		transform: node => {
+			const img = node.querySelector("img");
+
+			node.appendChild(
+				window.modifyDiv.createAccessibilityText(altText || img.getAttribute("title") || img.getAttribute("alt"))
+			);
+
+			node.setAttribute("onclick", img.getAttribute("onclick"));
+			img.removeAttribute("onclick");
+			img.removeAttribute("alt");
+			img.removeAttribute("title");
+			img.setAttribute("aria-hidden", true);
+		}
+	};
+};
+
 window.modifyDiv.isTextNode = function(node) {
 	return node.nodeType === document.TEXT_NODE;
+};
+
+window.modifyDiv.createAccessibilityText = function(text) {
+	const accessibilityText = document.createElement("div");
+
+	accessibilityText.classList.add("accessibility-text");
+	accessibilityText.textContent = text;
+
+	return accessibilityText;
 };

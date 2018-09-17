@@ -49,7 +49,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 		const parts = info.url.split("/");
 		const icon = parts[parts.length - 1];
 
-		if(iconMap[icon] ) {
+		if(iconMap[icon]) {
 			return {
 				redirectUrl: chrome.extension.getURL(`icons/${iconMap[icon]}.png`)
 			};

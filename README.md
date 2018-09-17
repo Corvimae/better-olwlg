@@ -6,5 +6,6 @@ Current features:
 
 - Restyles the entire application.
 - User profiles appear in smaller dropdown cards rather than take up half the screen.
-- Better accessibility on the profile page.
+- Better screen reader support on the profile page.
+- Better screen reader support on the item listing (Step 3) page.
 - Links in comments correctly render in the collection page.

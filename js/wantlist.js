@@ -1,8 +1,12 @@
 function addColumnNames(row) {
 	const tableColumns = ["geeklist-number", "description", "rank", "rating", "bay-rating"];
 
-	row.querySelectorAll(":scope > td, :scope > th").forEach((td, index) => {
-		td.classList.add(tableColumns[index]);
+	row.querySelectorAll(":scope > td, :scope > th").forEach((node, index) => {
+		node.classList.add(tableColumns[index]);
+
+		if(node.tagName === "TH") {
+			node.setAttribute("scope", "col");
+		}
 	});
 }
 
@@ -81,6 +85,9 @@ function addInstructionDivNames() {
 			combineRest: "div",
 			combineUntil: node => node.tagName === "BR",
 			className: ["guide-panel", "color-coding-container"],
+			attributes: {
+				"aria-hidden": true
+			},
 			childRules: [
 				{
 					matches: window.modifyDiv.requireText("Color Coding:", "text"),
@@ -99,6 +106,9 @@ function addInstructionDivNames() {
 			combineRest: "div",
 			combineUntil: node => node.tagName === "TABLE" || node.tagName === "FORM",
 			className: ["guide-panel", "icon-guide"],
+			attributes: {
+				"aria-hidden": true
+			},
 			childRules: [
 				{
 					matches: window.modifyDiv.requireText("Icon guide (click on icons in table to use):", "text"),
@@ -123,6 +133,88 @@ function addInstructionDivNames() {
 	window.modifyDiv(contentDiv, divModifications);
 }
 
+function fixRootAccessibility() {
+	let toggleCommentsLink = document.querySelector(".hide-comments");
+
+	toggleCommentsLink.innerHTML = toggleCommentsLink.innerHTML.replace("<a", `<button class="link-button"`).replace("</a>", "</button>");
+
+	document.querySelectorAll(`p > a[href*="viewlist.cgi"] > img`).forEach(node => node.setAttribute("aria-hidden", true));
+}
+
+function fixRowAccessibility(row) {
+	const firstColumnModifications = [
+		{
+			matches: node => node.tagName === "A" && node.href.indexOf("boardgamegeek.com/geeklist/item") !== -1,
+			className: "geeklist-link",
+			attributes: {
+				"aria-label": "View in Geeklist"
+			},
+			transform: node => node.querySelector("img").setAttribute("aria-hidden", true)
+		},
+		window.modifyDiv.convertImageToButton("hello.gif", "add-item"),
+		window.modifyDiv.convertImageToButton("1click.png", "one-click-add")
+	];
+
+	const firstCell = row.querySelector("td:nth-of-type(1)");
+
+	window.modifyDiv(firstCell, firstColumnModifications);
+
+	const detailModifications = [
+		window.modifyDiv.convertImageToButton("photo.gif", "view-photo", "Toggle item image"),
+		{
+			matches: window.modifyDiv.hasClass("game-name"),
+			transform: node => node.setAttribute("aria-label", `${node.textContent}. Click to view this item on Board Game Geek.`)
+		},
+		window.modifyDiv.convertImageToButton("geeklogo.png", "view-description", "View this item's description in a modal."),
+		{
+			matches: window.modifyDiv.hasClass("price-history-graph"),
+			attributes: {
+				"aria-label": "Open price history graph."
+			}
+		},
+		window.modifyDiv.convertImageToButton("ds2.gif", "price-history-table", "View the price history for this item in a modal."),
+		{
+			matches: window.modifyDiv.hasClass("owner"),
+			transform: node => node.setAttribute("aria-label", `Ships from ${node.textContent}. Click to view this user on Board Game Geek.`)
+		},
+		{
+			matches: window.modifyDiv.hasClass("profile-info"),
+			attributes: {
+				"aria-label": "View this user's math trade history."
+			}
+		},
+		{
+			matches: node => node.tagName === "IMG" && node.src.indexOf("flags/flags") !== -1,
+			attributes: {
+				"aria-hidden": true
+			}
+		}
+	];
+
+	window.modifyDiv(row.querySelector("td:nth-of-type(2) .details"), detailModifications);
+
+	document.querySelectorAll(`img[src*="step4.gif"]`).forEach(img => img.setAttribute("aria-hidden", true));
+}
+
+function addHeaderChevronAccessibilityWatcher() {
+	const headerChevronObserver = new MutationObserver(mutationList => {
+		for(let mutation of mutationList) {
+			for(let node of mutation.addedNodes) {
+				if(node.tagName === "SPAN" && node.id === "sorttable_sortfwdind" || node.id === "sorttable_sortrevind") {
+					node.setAttribute("aria-hidden", true);
+				}
+			}
+		}
+	});
+
+	headerChevronObserver.observe(document.querySelector("#geeklist > thead > tr"), {
+		childList: true,
+		subtree: true,
+		attributes: false,
+		characterData: false
+	});
+}
+
 function groupDescriptionTopRow(row) {
 	const rowClasses = [
 		"photo",
@@ -144,7 +236,11 @@ function groupDescriptionTopRow(row) {
 	const topRowChildren = [];
 	let blankElementsTraversed = 0;
 
-	if(descriptionElement.childNodes[0].tagName !== "IMG") {
+	const firstElement = descriptionElement.childNodes[0];
+
+	if(firstElement.textContent.indexOf("Value:") !== -1) {
+		rowClasses.unshift("value-label", "value-input");
+	} else if(firstElement.tagName !== "IMG") {
 		rowClasses.shift();
 	}
 
@@ -385,11 +481,15 @@ document.onreadystatechange = evt => {
 		styleSubmitButtons();
 		modifyForViewChanged();
 
+		fixRootAccessibility();
+		addHeaderChevronAccessibilityWatcher();
+
 		document.querySelectorAll("#geeklist > tbody > tr").forEach(row => {
 			addColumnNames(row);
 			groupDescriptionTopRow(row);
 			insertDescriptionContainer(row);
 			formatGameInfo(row);
+			fixRowAccessibility(row);
 		});
 	}
 };
@@ -415,5 +515,7 @@ const domObserver = new MutationObserver(mutationList => {
 
 domObserver.observe(document.documentElement, {
 	childList: true,
-	subtree: true
+	subtree: true,
+	attributes: false,
+	characterData: false
 });*/

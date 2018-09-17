@@ -29,7 +29,7 @@ The current accessibility features provided by Better OLWLG:
 - All actionable items are anchors or buttons, and have proper screen reader read-outs.
 - The "Add to Wantlist" button next to an item focuses on the first input element in pop-up modal.
 - The "Add to Wantlist" pop-up modal focuses back on the "View in Geeklist" anchor in the relevant item's row after the pop-up modal is closed.
-- Decoration elements are hidden from screen readers. This includes the icon and color guides, since those visual guides in theory would not be relevant to users with impared vision; I'm not sure if this is better behaviour or not, sop lease let me know if this is preferred.
+- Decoration elements are hidden from screen readers. This includes the icon and color guides, since those visual guides in theory would not be relevant to users with impared vision; I'm not sure if this is better behaviour or not, so please let me know if this is preferred.
 
 ### Profile (Settings) Page
 

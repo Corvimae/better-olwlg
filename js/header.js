@@ -10,13 +10,44 @@ headerContent.classList.add("header-content");
 
 let reachedUserOptions = false;
 
+const userOptionContainer = document.createElement("div");
+
+userOptionContainer.classList.add("user-dropdown-container");
+
 const userOptionDropdown = document.createElement("button");
 
 userOptionDropdown.href = "#";
 userOptionDropdown.classList.add("user-dropdown-toggle");
 
+let mouseOutDebounce = null;
+
+let isClickedOpen = false;
+
+const setDropdownVisibility = (target, state) => {
+	if(state) {
+		target.classList.add("active");
+		target.setAttribute("aria-expanded", true);
+		target.querySelector(".accessibility-text").textContent = "Press to hide account options.";
+	} else {
+		target.classList.remove("active");
+		target.setAttribute("aria-expanded", false);
+		target.querySelector(".accessibility-text").textContent = "Press to expand account options.";
+	}
+}
+
 userOptionDropdown.addEventListener("mouseover", evt => {
-	evt.currentTarget.classList.toggle("active");
+	if(mouseOutDebounce) {
+		clearTimeout(mouseOutDebounce);
+	}
+
+	if(!isClickedOpen) {
+		setDropdownVisibility(evt.currentTarget, true);
+	}
+});
+
+userOptionDropdown.addEventListener("click", evt => {
+	setDropdownVisibility(evt.currentTarget, !isClickedOpen);
+	isClickedOpen = !isClickedOpen;
 });
 
 const userOptionDropdownContents = document.createElement("div");
@@ -33,7 +64,6 @@ const userOptionLabels = {
 	auction: "Auctions Home",
 	favicon: "Groupon Affiliate"
 };
-
 
 [].slice.apply(headerContent.childNodes).forEach(node => {
 	let child = node;
@@ -55,41 +85,57 @@ const userOptionLabels = {
 
 		optionLabel.innerText = userOptionLabels[file];
 
+		// Hide the icon for a11y users.
+		const icon = child.querySelector("img");
+
+		if(icon) {
+			icon.setAttribute("aria-hidden", true);
+			icon.setAttribute("role", "presentation");
+		}
+
 		child.appendChild(optionLabel);
 		userOptionDropdownContents.appendChild(child);
-
 	} else if(child.tagName === "I") {
 		const [welcome, username] = child.textContent.split(":");
 
 		window.OLWLG.username = username.trim();
 
-		userOptionDropdown.innerHTML = `Hello, ${username.trim()}! <div class="user-dropdown-chevron"></div>`;
+		userOptionDropdown.innerHTML = `Hello, ${username.trim()}! <div class="user-dropdown-chevron" aria-hidden="true"></div>`;
 		reachedUserOptions = true;
 
 		headerContent.removeChild(child);
 	}
 });
 
-headerContent.appendChild(userOptionDropdown);
-userOptionDropdown.appendChild(userOptionDropdownContents);
+// Add accessibility text explaining the purpose of the dropdown.
+const dropdownAccessibilityText = document.createElement("span");
 
-/*document.addEventListener("click", evt => {
-	let target = evt.target;
+dropdownAccessibilityText.classList.add("accessibility-text");
 
-	while(target !== null && target.classList) {
-		if(target.classList.contains("user-dropdown-toggle")) {
-			evt.stopPropagation();
-			
-			return;
-		}
-		target = target.parentNode;
+dropdownAccessibilityText.textContent = "Press to expand account options.";
+
+userOptionDropdown.appendChild(dropdownAccessibilityText);
+
+// Append the dropdown elements to the header.
+headerContent.appendChild(userOptionContainer);
+
+userOptionContainer.appendChild(userOptionDropdown);
+userOptionContainer.appendChild(userOptionDropdownContents);
+
+document.querySelector(".user-dropdown").addEventListener("mouseover", evt => {
+	if(mouseOutDebounce) {
+		clearTimeout(mouseOutDebounce);
 	}
+});
 
-	document.querySelector(".user-dropdown-toggle").classList.remove("active");
-});*/
+document.querySelector(".user-dropdown").addEventListener("mouseout", evt => {
+	mouseOutDebounce = setTimeout(() => {
+		if(!isClickedOpen) {
+			setDropdownVisibility(document.querySelector(".user-dropdown-toggle"), false);
+		}
 
-document.querySelector(".user-dropdown-toggle").addEventListener("mouseout", evt => {
-	document.querySelector(".user-dropdown-toggle").classList.remove("active");
+		mouseOutDebounce = null;
+	}, 50);
 });
 
 const footer = document.createElement("div");

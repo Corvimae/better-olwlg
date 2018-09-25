@@ -12,7 +12,6 @@
 	box-sizing: border-box;
 }
 
-
 .header a[href="."]::after {
 	content: "OLWLG";
 	margin-right: 20px;
@@ -29,12 +28,17 @@
 	margin-right: 8px;
 }
 
+.user-dropdown-container {
+	position: relative;
+	height: 100%;
+	margin-left: auto;
+}
+
 .user-dropdown-toggle {
 	position: relative;
 	height: 100%;
 	font-family: "Muli", Helvetica, sans-serif;
 	font-size: 1rem;
-	margin-left: auto;
 	color: #fff;
 	padding: 0 20px;
 	border: none;
@@ -67,16 +71,16 @@
 }
 
 .user-dropdown {
-	position: absolute;
+	position: relative;
 	display: none;
-	left: 0;
-	top: 100%;
+	right: 0;
+	top: 0;
 	background-color: #4a4fc1;
 	flex-direction: column;
 	width: 100%;
 }
 
-.user-dropdown-toggle.active .user-dropdown {
+.user-dropdown-toggle.active + .user-dropdown {
 	display: flex;
 }
 

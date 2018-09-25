@@ -41,7 +41,9 @@ const iconMap = {
 	"help.png": "help",
 	"tipjar.png": "tipjar",
 	"auction.png": "auction",
-	"changed.png": "changed-item"
+	"changed.png": "changed-item",
+	"wantedmine.gif": "who-wanted-mine",
+	"mostwanted.jpg": "most-wanted"
 };
 
 chrome.webRequest.onBeforeRequest.addListener(

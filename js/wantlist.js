@@ -37,7 +37,10 @@ function addInstructionDivNames() {
 				{
 					matches: window.modifyDiv.requireText("You can click on each of the following", "text"),
 					wrap: true,
-					transformHTML: content => content.replace(":", "").replace("Warning!", "").trim() + "."
+					transformHTML: content => content.replace(":", "")
+						.replace("to which you have not replied to", "to which you have not replied")
+						.replace("Warning!", "")
+						.trim() + "."
 				}
 			]
 		},

@@ -161,42 +161,6 @@ function fixRowAccessibility(row) {
 	const firstCell = row.querySelector("td:nth-of-type(1)");
 
 	window.modifyDiv(firstCell, firstColumnModifications);
-
-	const detailModifications = [
-		window.modifyDiv.convertImageToButton("photo.gif", "view-photo", "Toggle item image"),
-		{
-			matches: window.modifyDiv.hasClass("game-name"),
-			transform: node => node.setAttribute("aria-label", `${node.textContent}. Click to view this item on Board Game Geek.`)
-		},
-		window.modifyDiv.convertImageToButton("geeklogo.png", "view-description", "View this item's description in a modal."),
-		{
-			matches: window.modifyDiv.hasClass("price-history-graph"),
-			attributes: {
-				"aria-label": "Open price history graph."
-			}
-		},
-		window.modifyDiv.convertImageToButton("ds2.gif", "price-history-table", "View the price history for this item in a modal."),
-		{
-			matches: window.modifyDiv.hasClass("owner"),
-			transform: node => node.setAttribute("aria-label", `Ships from ${node.textContent}. Click to view this user on Board Game Geek.`)
-		},
-		{
-			matches: window.modifyDiv.hasClass("profile-info"),
-			attributes: {
-				"aria-label": "View this user's math trade history."
-			}
-		},
-		{
-			matches: node => node.tagName === "IMG" && node.src.indexOf("flags/flags") !== -1,
-			attributes: {
-				"aria-hidden": true
-			}
-		}
-	];
-
-	window.modifyDiv(row.querySelector("td:nth-of-type(2) .details"), detailModifications);
-
-	document.querySelectorAll(`img[src*="step4.gif"]`).forEach(img => img.setAttribute("aria-hidden", true));
 }
 
 function addHeaderChevronAccessibilityWatcher() {
@@ -219,94 +183,105 @@ function addHeaderChevronAccessibilityWatcher() {
 }
 
 function groupDescriptionTopRow(row) {
-	const rowClasses = [
-		"photo",
-		"boardgame-text",
-		"game-name",
-		"game-year",
-		"show-game-description",
-		"price-history-graph",
-		"price-history-table",
-		"ships-from-text",
-		"owner",
-		"profile-info",
-		"math-trade-history",
-		"nationality",
-		"location",
-		"break"
-	];
 	const descriptionElement = row.querySelector(".description");
-	const topRowChildren = [];
-	let blankElementsTraversed = 0;
+	const modifications = [
+		window.modifyDiv.convertImageToButton("photo.gif", "photo", "Toggle item image"),
+		{
+			matches: node => {
+				if(window.modifyDiv.isTextNode(node)) {
+					const text = node.textContent.toLowerCase();
 
-	const firstElement = descriptionElement.childNodes[0];
+					return text.indexOf("boardgame") !== -1 || text.indexOf("rpgitem") !== -1 || text.indexOf("videogame") !== -1;
+				}
 
-	if(firstElement.textContent.indexOf("Value:") !== -1) {
-		rowClasses.unshift("value-label", "value-input");
-	} else if(firstElement.tagName !== "IMG") {
-		rowClasses.shift();
-	}
-
-	for(let [index, child] of [].slice.apply(descriptionElement.childNodes).entries()) {
-		if(!child.classList) {
-			if(child.textContent.trim().length) {
-				const spanWrapper = document.createElement("span");
-				const childText = child.textContent.trim();
+				return false;
+			},
+			wrap: true,
+			className: "boardgame-text",
+			transformHTML: content => {
+				const childText = content.trim();
 
 				if(childText === "Boardgame:") {
-					spanWrapper.innerHTML = `<img class="icon" title="Board Game" src="${chrome.extension.getURL("icons/dice.png")}">`;
+					return `<img class="icon" title="Board Game" src="${chrome.extension.getURL("icons/dice.png")}">`;
 				} else if(childText === "Rpgitem:") {
-					spanWrapper.innerHTML = `<img class="icon" title="Role-playing Game" src="${chrome.extension.getURL("icons/sword.png")}">`;
+					return `<img class="icon" title="Role-playing Game" src="${chrome.extension.getURL("icons/sword.png")}">`;
 				} else if(childText === "Videogame:") {
-					spanWrapper.innerHTML = `<img class="icon" title="Videogame" src="${chrome.extension.getURL("icons/arcade.png")}">`;
+					return `<img class="icon" title="Videogame" src="${chrome.extension.getURL("icons/arcade.png")}">`;
 				} else {
-					spanWrapper.innerHTML = child.textContent;
+					return content;
 				}
-				spanWrapper.classList.add(rowClasses[index - blankElementsTraversed]);
-
-				topRowChildren.push({
-					element: spanWrapper,
-					insert: true,
-					remove: false
-				});
-
-			} else {
-				blankElementsTraversed += 1;
 			}
+		},
+		{
+			matches: node => node.tagName === "A" && node.href.indexOf("/thing/") !== -1,
+			className: "game-name",
+			transform: node => {
+				descriptionElement.classList.add("in-collection", node.className.replace("game-name", "").trim());
 
-			topRowChildren.push({
-				element: child,
-				insert: false,
-				remove: true
-			});
-		} else if(child.classList.contains("oi")) {
-			break;
-		} else {
-			// If this is the game name, copy its collection status.
-			if(rowClasses[index] === "game-name" && child.className) {
-				descriptionElement.classList.add("in-collection", child.className);
+				node.setAttribute("aria-label", `${node.textContent}. Click to view this item on Board Game Geek.`);
+
+				return node;
 			}
+		},
+		{
+			matches: node => node.tagName === "FONT" && node.textContent.match(/\([0-9]+\)/),
+			className: "game-year"
+		},
+		window.modifyDiv.convertImageToButton("geeklogo.png", "show-game-description", "View this item's description in a modal."),
+		{
+			matches: node => node.tagName === "A" && node.href.indexOf("/GeekPrices.php") !== -1,
+			className: "price-history-graph",
+			attributes: {
+				"aria-label": "Open price history graph."
+			}
+		},
+		window.modifyDiv.convertImageToButton("ds2.gif", "price-history-table", "View the price history for this item in a modal."),
+		{
+			matches: window.modifyDiv.requireText("ships from", "text"),
+			wrap: true,
+			className: "ships-from-text"
+		},
+		{
+			matches: window.modifyDiv.hasClass("un"),
+			className: "owner",
+			transform: node => {
+				node.setAttribute("aria-label", `Ships from ${node.textContent}. Click to view this user on Board Game Geek.`);
 
-			child.classList.add(rowClasses[index - blankElementsTraversed]);
+				const avatarLink = node.querySelector(".avatar");
 
-			topRowChildren.push({
-				element: child,
-				insert: true,
-				remove: true
-			});
+				node.after(avatarLink);
+
+				return node;
+			}
+		},
+		{
+			matches: node => node.tagName === "A" && node.href.indexOf("mthistory.cgi") !== -1,
+			className: "math-trade-history",
+			attributes: {
+				"aria-label": "View this user's math trade history."
+			}
+		},
+		{
+			matches: node => node.tagName === "IMG" && node.src.indexOf("flags/flags") !== -1,
+			attributes: {
+				"aria-hidden": true
+			}
 		}
-	}
+	];
+
+	window.modifyDiv(descriptionElement, modifications);
 
 	const topRowElement = document.createElement("div");
 
 	topRowElement.classList.add("details");
 
-	descriptionElement.insertBefore(topRowElement, descriptionElement.childNodes[0]);
+	for(let child of [].slice.apply(descriptionElement.childNodes)) {
+		if(child.classList && child.classList.contains("oi")) break;
 
-	topRowChildren.forEach(child => {
-		if(child.remove) descriptionElement.removeChild(child.element);
-		if(child.insert) topRowElement.appendChild(child.element);
-	});
+		topRowElement.appendChild(child);
+	}
+
+	descriptionElement.insertBefore(topRowElement, descriptionElement.childNodes[0]);
 }
 
 function insertDescriptionContainer(row) {

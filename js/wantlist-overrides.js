@@ -13,7 +13,7 @@ window.showuserinfo = function(username) {
 
 	frame.src = `userinfo.cgi?listid=${window.geeklist}&user=${username}`;
 
-	const [sourceElement] = [].slice.apply(document.querySelectorAll(".profile-info")).filter(anchor => {
+	const [sourceElement] = [].slice.apply(document.querySelectorAll(".avatar")).filter(anchor => {
 		if(anchor.tagName === "IMG") {
 			const onclickMatches = anchor.onclick.toString().match(showUserInfoMatcher);
 

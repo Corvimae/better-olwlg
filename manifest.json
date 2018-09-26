@@ -1,7 +1,7 @@
 {
 		"name": "Better OLWLG",
 		"short_name": "Better OLWLG",
-    "version": "1.0",
+    "version": "1.0.1",
     "description": "Makes the Online Want List Generator prettier and improves its accessibility.",
 		"manifest_version": 2,
 		"permissions": [

@@ -1,0 +1,3 @@
+[submodule "lib/better-olwlg-wants-editor"]
+	path = lib/better-olwlg-wants-editor
+	url = git@github.com:AcceptableIce/better-olwlg-wants-editor.git

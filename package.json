@@ -1,0 +1,30 @@
+{
+  "name": "better-olwlg",
+  "version": "1.0.1",
+  "description": "Chrome extension to improve the OLWLG.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "webpack --env dev --progress --profile --hide-modules",
+    "build": "webpack --progress --hide-modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AcceptableIce/better-olwlg.git"
+  },
+  "author": "AcceptableIce",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AcceptableIce/better-olwlg/issues"
+  },
+  "homepage": "https://github.com/AcceptableIce/better-olwlg#readme",
+  "devDependencies": {
+    "better-olwlg-wants-editor": "git@github.com:AcceptableIce/better-olwlg-wants-editor.git",
+    "vue": "^2.5.17",
+    "vue-loader": "^15.4.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}

@@ -68,10 +68,8 @@ function pluralize(word, count, suffix) {
 const matches = window.location.search.match(/profile=([0-9]+)/);
 const profile = matches && matches[1];
 
-console.log(profile);
-
 let output =
-`
+	`
 <div class="user-page ${profile ? "fromProfile" : ""}">
 	<div class="user-name-row">
 		<div class="user-image" ${profile ? "style='background-image: url(https://cf.geekdo-static.com/avatars/avatar_id" + profile + ".png')'" : ""}></div>
@@ -99,7 +97,7 @@ let output =
 		</div>
 	</div>
 	<div class="math-trade-statistics">`;
-	
+
 if(userData.itemsInMathTrade) {
 	output += `<div class="math-trade-statistic items-in-trade">
 		<a href="${links.itemsInTradeLink}">

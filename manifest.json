@@ -44,7 +44,7 @@
 			},
 			{
 				"css": ["css/mywants.css"],
-				"js": ["js/mywants.js", "lib/better-olwlg-wants-editor/dist/build.js"],
+				"js": ["build/my-wants.js"],
 				"matches": ["*://bgg.activityclub.org/olwlg/mywants.cgi*"]
 			},
 			{

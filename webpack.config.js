@@ -1,4 +1,5 @@
 const path = require("path");
+const ChromeExtensionReloader = require("webpack-chrome-extension-reloader");
 
 module.exports = [{
 	output: {
@@ -23,5 +24,10 @@ module.exports = [{
 				}
 			}
 		]
-	}
+	},
+	plugins: []
 }];
+
+if(process.env.NODE_ENV === "development") {
+	module.exports[0].plugins.push(new ChromeExtensionReloader());
+}

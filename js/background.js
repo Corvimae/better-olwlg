@@ -11,6 +11,11 @@
 	["blocking"]
 );*/
 
+// Uncomment when testing settings to open the settings page on extension refresh.
+/*chrome.runtime.onInstalled.addListener(function() {
+	chrome.tabs.create({ url: "pages/settings/index.html" });
+});*/
+
 const iconMap = {
 	"e.gif": "chevron-right",
 	"arrow.gif": "view-in-geeklist",

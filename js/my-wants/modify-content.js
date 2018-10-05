@@ -67,4 +67,19 @@ export default function modifyContent() {
 	window.modifyDiv(document.querySelector("#dummy"), duplicateProtectionModifications);
 
 	document.querySelectorAll(".ondummy2").forEach(warning => warning.classList.add("alert", "error"));
+
+	document.querySelectorAll(".tab").forEach(tab => {
+		const button = document.createElement("button");
+
+		button.classList.add("mode-button", tab.getAttribute("bgcolor"));
+		button.onclick = tab.onclick;
+
+		tab.removeAttribute("onclick");
+		tab.removeAttribute("bgcolor");
+
+		button.innerHTML = tab.innerHTML;
+		tab.innerHTML = "";
+
+		tab.appendChild(button);
+	});
 }

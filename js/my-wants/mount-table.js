@@ -1,9 +1,14 @@
 import Vue from "vue";
 import WantsEditor from "better-olwlg-wants-editor";
 
+function getHiddenValue(name) {
+	return document.querySelector(`input[name="${name}"]`).value;
+}
+
 export default function mountTable() {
-	// TABLE PARSE
 	const tableData = {
+		listId: getHiddenValue("listid"),
+		editable: getHiddenValue("modify") === "1",
 		wants: [],
 		listings: []
 	};
@@ -12,6 +17,9 @@ export default function mountTable() {
 
 	const matchId = (element, prefix, dummyClass) => {
 		const idAttribute = element.getAttribute("id");
+
+		if(!idAttribute) return undefined;
+
 		const matchData = idAttribute.match(new RegExp(`${prefix}([0-9]+)`));
 
 		if(matchData && matchData[1]) {
@@ -53,7 +61,7 @@ export default function mountTable() {
 
 	const rows = [].slice.apply(table.querySelectorAll("tbody tr"));
 
-	rows.slice(0, rows.length - 1).forEach((row, index) => {
+	rows.forEach((row, index) => {
 		const id = matchId(row, "gn");
 
 		if(id) {
@@ -113,12 +121,20 @@ export default function mountTable() {
 					}
 				}
 			});
-		} else {
+		} else if(index !== rows.length - 1) {
+			// The last row may be a copy of the header if there are a lot of wants; don't throw
+			// an error if that's the case.
 			throw new Error(`No ID found in column ${index}! Is something misformatted?`);
 		}
 	});
 
 	document.querySelector("#table").innerHTML = `<div id="wants-editor"></div>`;
+
+	console.log("- -Scraped table data - -");
+	console.log(`List ID: ${tableData.listId} | Editable: ${tableData.editable}`);
+	console.log(`Found ${tableData.listings.length} listing(s) and ${tableData.wants.length} want(s).`);
+	console.table(tableData.listings);
+	console.table(tableData.wants);
 
 	window.WantsEditor = new Vue({
 		el: "#wants-editor",

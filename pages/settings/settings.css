@@ -1,0 +1,155 @@
+@font-face {
+ font-family: "Muli";
+ font-style: normal;
+ font-weight: 700;
+ src: url("chrome-extension://__MSG_@@extension_id__/fonts/Muli-Regular.ttf"); 
+}
+
+html {
+	font-family: "Muli", Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+body {
+	font-family: "Muli", Helvetica, sans-serif;
+	color: #333;
+}
+
+h1 {
+	text-align: center;
+}
+
+label,
+.checkbox-label {
+	font-size: 1.125rem;
+}
+
+.content {
+	width: 95%;
+	max-width: 920px;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+}
+
+.settings {
+	display: flex;
+	flex-direction: column;
+}
+
+.saved-alert {
+	margin-bottom: 40px;
+	line-height: 38px;
+}
+
+.field {
+	margin-bottom: 12px;
+}
+
+.field .description {
+	color: #666;
+}
+
+.description-container {
+	margin-top: 8px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.pros-and-cons {
+	position: relative;
+	margin-left: 8px;
+}
+
+.pros-and-cons-toggle {
+	width: 20px;
+	height: 20px;
+	background: url("../../icons/help.png");
+	background-size: contain;
+}
+
+.pros-and-cons-toggle:hover + .pros-and-cons-tooltip {
+	display: flex;
+	flex-direction: row;
+}
+
+.pros-and-cons-tooltip .argument-list {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.pros-and-cons-tooltip > .argument-list:first-of-type {
+	padding-right: 20px;
+	margin-right: 20px;
+}
+
+.pros-and-cons-tooltip > .argument-list:first-of-type::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 1px;
+	height: 100%;
+	background-color: #ccc;
+}
+
+.pros-and-cons-tooltip .argument-list .argument {
+	position: relative;
+	display: flex;
+	margin-right: 12px;
+	margin-bottom: 8px;
+}
+
+.pros-and-cons-tooltip .argument-list .argument::before {
+	content: "";
+	margin-right: 8px;
+}
+
+.pros-and-cons-tooltip .argument-list .argument:last-of-type {
+	margin-bottom: 0;
+}
+
+.pros-and-cons-tooltip .argument-list.pros .argument {
+	color: #003300;
+}
+
+.pros-and-cons-tooltip .argument-list.cons .argument {
+	color: #330000;
+}
+
+.pros-and-cons-tooltip .argument-list.pros .argument::before {
+	content: "+";
+}
+
+.pros-and-cons-tooltip .argument-list.cons .argument::before {
+	content: "-";
+}
+
+.save-button {
+	position: relative;
+	width: 200px;	
+  margin: 12px 8px 12px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 8px 16px;
+  transition: background-color 0.25s;
+  font-family: "Muli", Helvetica, sans-serif;
+  font-size: 1.25rem;
+	margin-top: 8px;
+	align-self: center;
+}
+
+.save-button:hover,
+.save-button:focus {
+  background-color: #f0f0f0;
+}
+
+.tooltip {
+	max-width: 500px;
+	margin-top: 8px;
+	font-size: 0.8rem;
+}

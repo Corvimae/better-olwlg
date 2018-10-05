@@ -1,8 +1,24 @@
+.content > table:first-of-type {
+	margin-top: 16px;
+}
+
+#table {
+	padding: 20px 0;
+}
+
 #uform {
 	position: relative;
 }
 
-.tab {
+table .tab {
+	display: inline-block;
+}
+
+table .tab:hover {
+	border: none;	
+}
+
+.tab .mode-button {
 	display: inline-block;
 	padding: 4px 8px;
 	margin-right: 8px;
@@ -11,63 +27,63 @@
 	transition: background-color 0.25s;
 }
 
-.tab[bgcolor="yellow"] {
+.tab .yellow {
 	background-color: #fff59e;
 	border-color: #968706;
 }
 
-.tab[bgcolor="pink"] {
+.tab .pink {
 	background-color: #ffcef3;
 	border-color: #730057;
 }
 
-.tab[bgcolor="lightblue"] {
+.tab .lightblue {
 	background-color: #d0dbff;
 	border-color: #001d75;
 }
 
-.tab[bgcolor="green"] {
+.tab .green {
 	background-color: #228422;
 	border-color: #042300;
 }
 
-.tab[bgcolor="lime"] {
+.tab .lime {
 	background-color: #97ff9c;
 	border-color: #38942d;
 }
 
-.tab:hover,
-.tab:focus {
+.tab .mode-button:hover,
+.tab .mode-button:focus {
 	border-style: solid !important;
 	border-width: 1px !important;
 }
 
-.tab[bgcolor="yellow"]:hover,
-.tab[bgcolor="yellow"]:focus {
+.tab .yellow:hover,
+.tab .yellow:focus {
 	background-color: #fffef1;
 	border-color: #968706 !important;
 }
 
-.tab[bgcolor="pink"]:hover,
-.tab[bgcolor="pink"]:focus {
+.tab .pink:hover,
+.tab .pink:focus {
 	background-color: #ffe9f9;
 	border-color: #730057 !important;
 }
 
-.tab[bgcolor="lightblue"]:hover,
-.tab[bgcolor="lightblue"]:focus {
+.tab .lightblue:hover,
+.tab .lightblue:focus {
 	background-color: #e9eefd;
 	border-color: #001d75 !important;
 }
 
-.tab[bgcolor="green"]:hover,
-.tab[bgcolor="green"]:focus {
+.tab .green:hover,
+.tab .green:focus {
 	background-color: #4fc34f;
 	border-color: #042300 !important;
 }
 
-.tab[bgcolor="lime"]:hover,
-.tab[bgcolor="lime"]:focus {
+.tab .lime:hover,
+.tab .lime:focus {
 	background-color: #e1ffe1;
 	border-color: #38942d !important;
 }

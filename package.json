@@ -1,6 +1,6 @@
 {
   "name": "better-olwlg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Chrome extension to improve the OLWLG.",
   "main": "index.js",
   "directories": {
@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "webpack --env dev --progress --profile --hide-modules",
-    "build": "webpack --progress --hide-modules"
+    "watch": "npm run dev -- --watch",
+    "build": "webpack --progress --hide-modules",
+    "bundle": "webpack --env production --config bundle.config.js --progress --hide-modules"
   },
   "repository": {
     "type": "git",
@@ -22,9 +24,15 @@
   "homepage": "https://github.com/AcceptableIce/better-olwlg#readme",
   "devDependencies": {
     "better-olwlg-wants-editor": "git@github.com:AcceptableIce/better-olwlg-wants-editor.git",
+    "copy-webpack-plugin": "^4.5.2",
     "vue": "^2.5.17",
     "vue-loader": "^15.4.2",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-chrome-extension-reloader": "^0.8.3",
+    "webpack-cli": "^3.1.2",
+    "zip-webpack-plugin": "^3.0.0"
+  },
+  "dependencies": {
+    "clean-webpack-plugin": "^0.1.19"
   }
 }

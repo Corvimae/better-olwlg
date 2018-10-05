@@ -44,6 +44,7 @@
 	border: none;
 	background-color: transparent;
 	transition: background-color 0.25s;
+	min-width: 230px;
 }
 
 .user-dropdown-toggle:hover,

@@ -33,7 +33,7 @@ const setDropdownVisibility = (target, state) => {
 		target.setAttribute("aria-expanded", false);
 		target.querySelector(".accessibility-text").textContent = "Press to expand account options.";
 	}
-}
+};
 
 userOptionDropdown.addEventListener("mouseover", evt => {
 	if(mouseOutDebounce) {
@@ -107,6 +107,37 @@ const userOptionLabels = {
 	}
 });
 
+const addSettingsDropdownItem = (image, text, link, accessibilityText) => {
+	const extensionSettingsLink = document.createElement("a");
+
+	extensionSettingsLink.classList.add("user-dropdown-option");
+	extensionSettingsLink.setAttribute("title", accessibilityText || text);
+	extensionSettingsLink.setAttribute("target", "_blank");
+	if(typeof link === "function") {
+		extensionSettingsLink.onclick = link;
+	} else {
+		extensionSettingsLink.setAttribute("href", link);
+	}
+
+	const extensionSettingsImage = document.createElement("img");
+
+	extensionSettingsImage.setAttribute("src", chrome.extension.getURL(`icons/${image}.png`));
+	extensionSettingsImage.setAttribute("height", 24);
+	extensionSettingsImage.setAttribute("aria-hidden", true);
+	extensionSettingsImage.setAttribute("role", "presentation");
+
+	const extensionSettingsText = document.createElement("span");
+
+	extensionSettingsText.textContent = text;
+
+	extensionSettingsLink.appendChild(extensionSettingsImage);
+	extensionSettingsLink.appendChild(extensionSettingsText);
+
+	userOptionDropdownContents.appendChild(extensionSettingsLink);
+};
+
+addSettingsDropdownItem("logo", "Better OLWLG Settings", chrome.extension.getURL("pages/settings/index.html"));
+
 // Add accessibility text explaining the purpose of the dropdown.
 const dropdownAccessibilityText = document.createElement("span");
 
@@ -128,7 +159,7 @@ document.querySelector(".user-dropdown").addEventListener("mouseover", evt => {
 	}
 });
 
-document.querySelector(".user-dropdown").addEventListener("mouseout", evt => {
+const onMouseOut = evt => {
 	mouseOutDebounce = setTimeout(() => {
 		if(!isClickedOpen) {
 			setDropdownVisibility(document.querySelector(".user-dropdown-toggle"), false);
@@ -136,7 +167,10 @@ document.querySelector(".user-dropdown").addEventListener("mouseout", evt => {
 
 		mouseOutDebounce = null;
 	}, 50);
-});
+};
+
+document.querySelector(".user-dropdown").addEventListener("mouseout", onMouseOut);
+document.querySelector(".user-dropdown-toggle").addEventListener("mouseout", onMouseOut);
 
 const footer = document.createElement("div");
 

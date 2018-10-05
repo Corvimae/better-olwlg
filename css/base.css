@@ -25,6 +25,11 @@ a {
 	text-decoration: none;
 }
 
+button {
+	font-family: "Muli", Helvetica, sans-serif;
+	font-size: 1rem;
+}
+
 .alert {
 	display: block;
 	position: relative;
@@ -218,4 +223,112 @@ a {
 	overflow: hidden;
 	z-index: -1000;
 	font-size: 1px;
+}
+
+input[type="checkbox"] {
+	width: 1px;
+	height: 1px;
+	border: 0;
+	clip: rect(0 0 0 0);
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	pointer-events: auto;
+	width: 40px;
+	height: 40px;
+}
+
+.checkbox-interactable {
+	position: relative;
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	vertical-align: middle;
+	border: 1px solid #dddbda;
+	border-radius: 0.125rem;
+	background: white;
+	-webkit-transition: border 0.1s linear, background-color 0.1s linear;
+	transition: border 0.1s linear, background-color 0.1s linear;
+}
+
+.checkbox-label {
+	position: relative;
+	display: inline;
+	vertical-align: middle;
+	font-size: 0.9rem;
+	color: #333;
+	margin: 8px;
+	padding-top: 4px;
+}
+
+.checkbox-label img {
+	position: relative;
+	top: 4px;
+}
+
+input[type="checkbox"]:checked + .checkbox-label-container > .checkbox-interactable::after {
+	content: "";
+	position: absolute;
+	display: block;
+	left: 2px;
+	top: 2px;
+	width: 12px;
+	height: 12px;
+	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/checkbox-checkmark.png");
+	background-size: contain;
+}
+
+.tooltip {
+	position: absolute;
+	display: none;
+  left: 100%;
+  top: 50%;
+  width: max-content;
+  max-width: 250px;
+  overflow: visible;
+  background-color: #fff;
+  border: 1px solid #dddbda;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+  padding: 10px 20px;
+  transform: translate(0, -50%);
+  box-sizing: border-box;
+  opacity: 0.999;
+  z-index: 40;
+	pointer-events: none;
+
+}
+
+.tooltip::before,
+.tooltip::after {
+  width: 0.5rem;
+  height: 0.5rem;
+  position: absolute;
+  transform: rotate(45deg);
+  content: "";
+  background-color: inherit;
+  top: 50%;
+  left: -0.25rem;
+  margin-top: -0.25rem;
+  z-index: 39;
+}
+
+.tooltip::after {
+  box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, 0.16);
+  z-index: 38;
+}
+
+.tooltip.bottom {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.tooltip.bottom::before,
+.tooltip.bottom::after {
+  left: 50%;
+  margin-left: -0.25rem;
+  top: 0;
+  transform: rotate(135deg);
 }

@@ -53,60 +53,6 @@ table .help-text {
 	margin-top: 8px;
 }
 
-input[type="checkbox"] {
-	width: 1px;
-	height: 1px;
-	border: 0;
-	clip: rect(0 0 0 0);
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	pointer-events: auto;
-	width: 40px;
-	height: 40px;
-}
-
-.checkbox-interactable {
-	position: relative;
-	display: inline-block;
-	width: 1rem;
-	height: 1rem;
-	vertical-align: middle;
-	border: 1px solid #dddbda;
-	border-radius: 0.125rem;
-	background: white;
-	-webkit-transition: border 0.1s linear, background-color 0.1s linear;
-	transition: border 0.1s linear, background-color 0.1s linear;
-}
-
-.checkbox-label {
-	position: relative;
-	display: inline;
-	vertical-align: middle;
-	font-size: 0.9rem;
-	color: #333;
-	margin: 8px;
-	padding-top: 4px;
-}
-
-.checkbox-label img {
-	position: relative;
-	top: 4px;
-}
-
-input[type="checkbox"]:checked + .checkbox-label-container > .checkbox-interactable::after {
-	content: "";
-	position: absolute;
-	display: block;
-	left: 2px;
-	top: 2px;
-	width: 12px;
-	height: 12px;
-	background-image: url("chrome-extension://__MSG_@@extension_id__/icons/checkbox-checkmark.png");
-	background-size: contain;
-}
-
 .auction-notification-container {
 	margin-left: 26px;
 	margin-top: 16px;

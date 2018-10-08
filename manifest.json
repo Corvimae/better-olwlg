@@ -1,7 +1,7 @@
 {
 		"name": "Better OLWLG",
 		"short_name": "Better OLWLG",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Makes the Online Want List Generator prettier and improves its accessibility.",
 		"manifest_version": 2,
 		"permissions": [
@@ -52,7 +52,10 @@
 				"css": ["css/home.css"],
 				"js": ["js/home.js"],
 				"matches": ["*://bgg.activityclub.org/olwlg*"],
-				"exclude_matches": ["*://bgg.activityclub.org/olwlg*.cgi*"]
+				"exclude_matches": [
+					"*://bgg.activityclub.org/olwlg*.cgi*",
+					"*://bgg.activityclub.org/olwlg*.txt*"
+				]
 			},
 			{
 				"css": ["css/profile.css"], 

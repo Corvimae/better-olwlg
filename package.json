@@ -7,10 +7,10 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "webpack --env dev --progress --profile --hide-modules",
+    "dev": "NODE_ENV=development webpack --env dev --config bundle.config.js --progress --profile --hide-modules",
     "watch": "npm run dev -- --watch",
     "build": "webpack --progress --hide-modules",
-    "bundle": "webpack --env production --config bundle.config.js --progress --hide-modules"
+    "bundle": "NODE_ENV=production webpack --env production --config bundle.config.js --progress --hide-modules"
   },
   "repository": {
     "type": "git",

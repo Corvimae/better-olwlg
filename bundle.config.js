@@ -27,13 +27,18 @@ Object.assign(baseConfig, {
 			copy("pages"),
 			copy("manifest.json"),
 			copy("icon.png")
-		]),
-		new ZipPlugin({
-			path: "..",
-			filename: "bundle.zip",
-			pathPrefix: "bundle"
-		})
+		])
 	]
 });
+
+console.log(process.env.NODE_ENV);
+
+if(process.env.NODE_ENV === "production") {
+	baseConfig.plugins.push(new ZipPlugin({
+		path: "..",
+		filename: "bundle.zip",
+		pathPrefix: "bundle"
+	}));
+}
 
 module.exports = [baseConfig];

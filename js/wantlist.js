@@ -1,3 +1,19 @@
+const filterByWantlistModification = () => ({
+	matches: window.modifyDiv.requireText("After you are done with this step", "text"),
+	combineRest: "p",
+	combineUntil: node => node.tagName !== "A",
+	transform: node => {
+		[].slice.apply(node.childNodes).forEach(child => {
+			if(child.tagName === "A") {
+				child.textContent = "View only items on my wishlist";
+				child.classList.add("button", "filter-items-button");
+			} else {
+				child.remove();
+			}
+		});
+	}
+});
+
 function addColumnNames(row) {
 	const tableColumns = ["geeklist-number", "description", "rank", "rating", "bay-rating"];
 
@@ -130,7 +146,8 @@ function addInstructionDivNames() {
 				window.modifyDiv.groupIcon("photo.gif"),
 				window.modifyDiv.groupIcon("ds.gif")
 			]
-		}
+		},
+		filterByWantlistModification()
 	];
 
 	window.modifyDiv(contentDiv, divModifications);
@@ -426,7 +443,7 @@ function styleSubmitButtons() {
 	submitButtonNames.forEach(buttonName => {
 		const button = document.querySelector(`input[name=${buttonName}]`);
 
-		if(button) button.classList.add("submit-button");
+		if(button) button.classList.add("button");
 	});
 }
 
@@ -448,6 +465,16 @@ function modifyForViewChanged() {
 			window.modifyDiv(possibleNode, modifications);
 
 			possibleNode.classList.add("update-timestamps-container");
+		}
+	});
+}
+
+function styleFilterByCollectionLinks() {
+	document.querySelectorAll(".main-content > p").forEach(container => {
+		if(container.textContent.indexOf("After you are done with this step") !== -1) {
+			container.classList.add("filter-by-wants");
+
+			window.modifyDiv(container, [filterByWantlistModification()]);
 		}
 	});
 }
@@ -476,6 +503,7 @@ window.addEventListener("load", evt => {
 	addUserInfoBox();
 	addClickActionOverrides();
 	cleanUpPage();
+	styleFilterByCollectionLinks();
 });
 
 /*const replacementIcon = chrome.extension.getURL("icons/profile.png");

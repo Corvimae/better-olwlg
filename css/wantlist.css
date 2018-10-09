@@ -612,3 +612,16 @@ img[src*="photo.gif"] {
 	height: 24px !important;
 	width: 24px;
 }
+
+.filter-items-button {
+	display: inline-block;
+	background-color: #2772e2;
+	border-color: #004786;
+	color: #fff;
+	margin: 0 auto;
+}
+
+.main-content > .filter-by-wants .filter-items-button {
+	margin-left: 50%;
+	transform: translate(-50%, 0);
+}

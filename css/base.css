@@ -180,7 +180,7 @@ button {
 	font-size: 0.7rem;
 }
 
-.submit-button {
+.button {
 	margin: 12px 8px 12px 0;
 	background-color: #fff;
 	border: 1px solid #ccc;
@@ -193,8 +193,8 @@ button {
 	margin-top: 8px;
 }
 
-.submit-button:hover,
-.submit-button:focus {
+.button:hover,
+.button:focus {
 	background-color: #f0f0f0;
 }
 

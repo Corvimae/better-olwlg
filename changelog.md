@@ -7,3 +7,7 @@
 
 1.0.3
 	- Fixed a bug where the value editor popover wouldn't appear.
+
+1.0.6
+	- Redesigned value input and actually made it work.
+	- Fix to some visual elements on the wantlist page.

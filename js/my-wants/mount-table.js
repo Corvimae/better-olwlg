@@ -70,6 +70,8 @@ export default function mountTable() {
 			const name = nameLink.textContent;
 			const bgg_id = getBGGIdFromLink(nameLink.getAttribute("href"));
 			const owner = nameCell.querySelector(".owner").textContent;
+			const valueCell = nameCell.querySelector("input[name*='value']");
+			const value = valueCell ? Number(valueCell.value) : 0;
 
 			let want;
 			let dummy;
@@ -80,6 +82,7 @@ export default function mountTable() {
 					name,
 					bgg_id,
 					owner,
+					value,
 					order: index,
 					sweeteners: [] // TODO: enumerate sweeteners
 				};
@@ -98,6 +101,7 @@ export default function mountTable() {
 				dummy = tableData.listings.filter(listing => listing.id === id)[0];
 
 				dummy.order = index;
+				dummy.value = value;
 
 				if(!dummy) {
 					throw new Error(`Row has a dummy ID but does not match any dummy listings! (ID: ${id})`);

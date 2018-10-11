@@ -621,7 +621,7 @@ img[src*="photo.gif"] {
 	margin: 0 auto;
 }
 
-.main-content > .filter-by-wants .filter-items-button {
+p > .filter-items-button {
 	margin-left: 50%;
 	transform: translate(-50%, 0);
 }

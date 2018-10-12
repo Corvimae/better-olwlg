@@ -1,6 +1,6 @@
 {
   "name": "better-olwlg",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "Chrome extension to improve the OLWLG.",
   "main": "index.js",
   "directories": {

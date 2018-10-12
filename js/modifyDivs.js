@@ -210,3 +210,35 @@ window.modifyDiv.createAccessibilityText = function(text) {
 
 	return accessibilityText;
 };
+
+window.modifyDiv.buildCheckboxElement = function(node, inputId, transform) {
+	const parentLabel = document.createElement("label");
+
+	parentLabel.setAttribute("for", inputId);
+	parentLabel.classList.add("checkbox-label-container");
+
+	const fakeCheckbox = document.createElement("span");
+
+	fakeCheckbox.classList.add("checkbox-interactable");
+
+	const checkboxLabel = document.createElement("span");
+
+	checkboxLabel.classList.add("checkbox-label");
+
+	if(node.childNodes && node.childNodes.length) {
+		let childNodes = [].slice.apply(node.childNodes);
+
+		childNodes = childNodes.slice(childNodes.indexOf(childNodes.find(child => child.tagName === "INPUT")) + 1);
+
+		childNodes.forEach(child => checkboxLabel.appendChild(child));
+
+		if(transform) transform(childNodes, checkboxLabel);
+	} else {
+		checkboxLabel.innerHTML = transform ? transform(node.textContent) : node.textContent;
+	}
+
+	parentLabel.appendChild(fakeCheckbox);
+	parentLabel.appendChild(checkboxLabel);
+
+	return parentLabel;
+};

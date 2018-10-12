@@ -23,37 +23,6 @@ const createHelpText = (text, transform) => ({
 	transformHTML: transform
 });
 
-const buildCheckboxElement = (node, inputId, transform) => {
-	const parentLabel = document.createElement("label");
-
-	parentLabel.setAttribute("for", inputId);
-	parentLabel.classList.add("checkbox-label-container");
-	
-	const fakeCheckbox = document.createElement("span");
-
-	fakeCheckbox.classList.add("checkbox-interactable");
-
-	const checkboxLabel = document.createElement("span");
-
-	checkboxLabel.classList.add("checkbox-label");
-
-	if(node.childNodes && node.childNodes.length) {
-		let childNodes = [].slice.apply(node.childNodes);
-
-		childNodes = childNodes.slice(childNodes.indexOf(childNodes.find(child => child.tagName === "INPUT")) + 1);
-
-		childNodes.forEach(child => checkboxLabel.appendChild(child));
-
-		if(transform) transform(childNodes, checkboxLabel);
-	} else {
-		checkboxLabel.innerHTML = transform ? transform(node.textContent) : node.textContent;
-	}
-
-	parentLabel.appendChild(fakeCheckbox);
-	parentLabel.appendChild(checkboxLabel);
-
-	return parentLabel;
-}
 const createCheckboxRow = (text, inputId, transform) => ({
 	matches: node => node.tagName === "TD" && node.textContent.indexOf(text) !== -1,
 	transform: node => {
@@ -61,7 +30,7 @@ const createCheckboxRow = (text, inputId, transform) => ({
 
 		checkbox.setAttribute("id", inputId);
 
-		node.appendChild(buildCheckboxElement(node, inputId, transform));
+		node.appendChild(window.modifyDiv.buildCheckboxElement(node, inputId, transform));
 	}
 });
 
@@ -119,7 +88,11 @@ const processFilters = (matchText, prefix, transformHeader, additionalMatchRequi
 
 				const textNode = nextSibling.nextSibling;
 
-				nextSibling.after(buildCheckboxElement(textNode, prefix + "-" + checkboxes[processed].id, content => checkboxes[processed].text));
+				nextSibling.after(window.modifyDiv.buildCheckboxElement(
+					textNode,
+					prefix + "-" + checkboxes[processed].id,
+					() => checkboxes[processed].text)
+				);
 
 				textNode.parentElement.removeChild(textNode);
 
@@ -194,15 +167,15 @@ const tableModifications = [
 				wishlistpriority3: "In wishlist (3 - Like to have)",
 				wishlistpriority4: "In wishlist (4 - Thinking about it)",
 				wishlistpriority5: "In wishlist (5 -Don't buy this)"
-			}
+			};
 
 			table.classList.add("highlight-colors");
-			
+
 			[].slice.apply(table.querySelectorAll("tr")).forEach(row => {
 				const [labelCell, inputCell] = row.querySelectorAll("td");
 
 				labelCell.classList.add("highlight-margin");
-				
+
 				const colorSpan = labelCell.querySelector("span");
 				const elementId = colorSpan.textContent;
 

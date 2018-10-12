@@ -52,6 +52,23 @@ const duplicateProtectionModifications = [
 	}
 ];
 
+const newDummyModifications = [
+	{
+		matches: node => {
+			return node.tagName === "INPUT" && node.type.toLowerCase() === "checkbox";
+		},
+		combineRest: "div",
+		combineUntil: node => node.tagName === "BR",
+		transform: node => {
+			const checkbox = node.children[0];
+
+			checkbox.setAttribute("id", "group");
+
+			node.appendChild(window.modifyDiv.buildCheckboxElement(node, "group"));
+		}
+	}
+];
+
 export default function modifyContent() {
 	const content = document.querySelector(".header").nextElementSibling;
 
@@ -65,6 +82,8 @@ export default function modifyContent() {
 	helpText.removeAttribute("id");
 
 	window.modifyDiv(document.querySelector("#dummy"), duplicateProtectionModifications);
+
+	window.modifyDiv(document.querySelector("#newdummy"), newDummyModifications);
 
 	document.querySelectorAll(".ondummy2").forEach(warning => warning.classList.add("alert", "error"));
 

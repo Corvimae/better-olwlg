@@ -34,9 +34,13 @@ export default function mountTable() {
 	};
 
 	const getBGGIdFromLink = link => {
-		const matches = link.match(/boardgamegeek\.com\/[\S]*?\/([0-9]+)/);
+		if(link) {
+			const matches = link.match(/boardgamegeek\.com\/[\S]*?\/([0-9]+)/);
 
-		return matches && matches[1];
+			return matches && matches[1];
+		} else {
+			return undefined;
+		}
 	};
 
 	[].slice.apply(table.querySelectorAll("thead tr th")).slice(2).forEach((header, index) => {
@@ -66,7 +70,7 @@ export default function mountTable() {
 
 		if(id) {
 			const nameCell = row.querySelector("td:nth-of-type(2)");
-			const nameLink = nameCell.querySelector("a[href*='boardgamegeek.com/thing/']");
+			const nameLink = nameCell.querySelector("a[href*='boardgamegeek.com/thing/'], a[target='_blank']");
 			const name = nameLink.textContent;
 			const bgg_id = getBGGIdFromLink(nameLink.getAttribute("href"));
 			const owner = nameCell.querySelector(".owner").textContent;

@@ -45,7 +45,10 @@ export default function mountTable() {
 
 	[].slice.apply(table.querySelectorAll("thead tr th")).slice(2).forEach((header, index) => {
 		const id = matchId(header, "gm", "isdummy");
-		const isDummy = !id.match(/([0-9]+)/);
+
+		console.log("Header ID found:", id, header.getAttribute("title"));
+		// This might be a problem.
+		const isDummy = !id.match(/^([0-9]+)$/);
 
 		if(id) {
 			const listing = {
@@ -80,7 +83,7 @@ export default function mountTable() {
 			let want;
 			let dummy;
 
-			if(id.match(/([0-9]+)/)) {
+			if(id.match(/^([0-9]+)$/)) {
 				want = {
 					id,
 					name,
@@ -143,6 +146,8 @@ export default function mountTable() {
 	console.log(`Found ${tableData.listings.length} listing(s) and ${tableData.wants.length} want(s).`);
 	console.table(tableData.listings);
 	console.table(tableData.wants);
+
+	console.log(JSON.stringify(tableData));
 
 	window.WantsEditor = new Vue({
 		el: "#wants-editor",

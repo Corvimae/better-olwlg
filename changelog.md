@@ -17,3 +17,7 @@
 	- Fixed an issue where dummy item names appeared as linked in the wants editor.
 	- Fixed an issue where the "Non-duplicate protected dummy" checkbox	was not visible.
 	- Fixed an issue where some dummy items could break the new wants editor.
+
+1.0.8
+	- Fixed an issue where dummy items had delete icons in the wants editor.
+	- Fixed an issue where editing dummy rows in the wants editor sometimes toggled other cells.

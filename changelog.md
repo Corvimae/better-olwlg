@@ -21,3 +21,9 @@
 1.0.8
 	- Fixed an issue where dummy items had delete icons in the wants editor.
 	- Fixed an issue where editing dummy rows in the wants editor sometimes toggled other cells.
+
+1.0.9
+	- Fixed various issues with creating dummy items "the easy way".
+
+1.1.0
+	- Vastly improved the performance of the wants editor.

@@ -38,6 +38,12 @@ const mainModifications = [
 	}
 ];
 
+const instructionsModification = {
+	matches: window.modifyDiv.requireText("How to Use", "h2"),
+	combineRest: "div",
+	className: ["alert", "info", "how-to-use-duplicate-protection"]
+};
+
 const duplicateProtectionModifications = [
 	{
 		matches: window.modifyDiv.requireText("Create a New Dummy Item", "h2"),
@@ -45,11 +51,7 @@ const duplicateProtectionModifications = [
 		combineUntil: element => element.tagName === "H2",
 		className: ["alert", "new-dummy-item-panel"]
 	},
-	{
-		matches: window.modifyDiv.requireText("How to Use", "h2"),
-		combineRest: "div",
-		className: ["alert", "info", "how-to-use-duplicate-protection"]
-	}
+	instructionsModification
 ];
 
 const newDummyModifications = [
@@ -69,6 +71,27 @@ const newDummyModifications = [
 	}
 ];
 
+const autoDuplicateModifications = [
+	instructionsModification,
+	{
+		matches: node => node.tagName === "TABLE",
+		className: "auto-dummy-table"
+	},
+	{
+		matches: node => node.tagName === "INPUT" && node.name === "autoadd",
+		combineRest: "div",
+		combineUntil: node => node.tagName === "INPUT" && node.type === "submit",
+		className: "auto-add-toggle",
+		transform: node => {
+			const checkbox = node.children[0];
+
+			checkbox.setAttribute("id", "autoadd");
+
+			node.appendChild(window.modifyDiv.buildCheckboxElement(node, "autoadd"));
+		}
+	}
+];
+
 export default function modifyContent() {
 	const content = document.querySelector(".header").nextElementSibling;
 
@@ -84,6 +107,23 @@ export default function modifyContent() {
 	window.modifyDiv(document.querySelector("#dummy"), duplicateProtectionModifications);
 
 	window.modifyDiv(document.querySelector("#newdummy"), newDummyModifications);
+
+	const autoAddToggle = document.querySelector("input[name='autoadd']");
+
+	if(autoAddToggle) {
+		window.modifyDiv(autoAddToggle.parentElement, autoDuplicateModifications);
+
+		document.querySelectorAll(".auto-dummy-table tbody input[type='checkbox']").forEach(checkbox => {
+			const container = document.createElement("div");
+
+			checkbox.setAttribute("id", checkbox.name);
+
+			checkbox.parentElement.insertBefore(container, checkbox);
+
+			container.appendChild(checkbox);
+			container.appendChild(window.modifyDiv.buildCheckboxElement(checkbox, checkbox.name));
+		});
+	}
 
 	document.querySelectorAll(".ondummy2").forEach(warning => warning.classList.add("alert", "error"));
 

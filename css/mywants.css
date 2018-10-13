@@ -141,8 +141,8 @@ div#cellinfo:empty {
 	margin-bottom: 12px;
 }
 
-.new-dummy-item-panel > form > input[type=submit],
-.new-dummy-item-panel > form > input[type=reset],
+form > input[type=submit],
+form > input[type=reset],
 #submit {
 	margin: 12px 8px 12px 0;
 	background-color: #fff;
@@ -153,10 +153,10 @@ div#cellinfo:empty {
 	transition: background-color 0.25s;
 }
 
-.new-dummy-item-panel > form > input[type=submit]:focus,
-.new-dummy-item-panel > form > input[type=submit]:hover,
-.new-dummy-item-panel > form > input[type=reset]:focus,
-.new-dummy-item-panel > form > input[type=reset]:hover,
+form > input[type=submit]:focus,
+form > input[type=submit]:hover,
+form > input[type=reset]:focus,
+form > input[type=reset]:hover,
 #submit:hover,
 #submit:focus {
 	background-color: #f0f0f0;
@@ -169,6 +169,30 @@ div#cellinfo:empty {
 
 #dummy .new-dummy-item-panel table:first-of-type tbody tr td {
 	padding: 4px 16px;
+}
+
+.auto-dummy-table tr {
+	height: 30px;
+}
+
+.auto-dummy-table td {
+	position: relative;
+}
+
+.auto-dummy-table input:not([type="checkbox"]) {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	border: 1px solid #ccc;
+	padding: 4px 8px;
+	box-sizing: border-box;
+}
+
+.auto-add-toggle {
+	padding: 8px 12px;
 }
 
 .ondummy2 .isdummy {

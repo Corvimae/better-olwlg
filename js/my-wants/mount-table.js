@@ -46,7 +46,8 @@ export default function mountTable() {
 	[].slice.apply(table.querySelectorAll("thead tr th")).slice(2).forEach((header, index) => {
 		const id = matchId(header, "gm", "isdummy");
 
-		console.log("Header ID found:", id, header.getAttribute("title"));
+		if(!id) return;
+
 		// This might be a problem.
 		const isDummy = !id.match(/^([0-9]+)$/);
 

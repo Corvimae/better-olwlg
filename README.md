@@ -18,7 +18,7 @@ Better OLWLG modifies some pages with the hope of providing better support for u
 Specifically, Better OLWLG modifies the DOM structure with the intention of making all interactive components
 comply with accessibility best practices as best as I understand them.
 If you have an accessibility feature you'd like added, or know how I can improve the current implementation, please 
-log an issue or [message me on Twitter (@AcceptableIce)](https://twitter.com/AcceptableIce). Though I have some experience 
+log an issue or [message me on Twitter (@Corvimae)](https://twitter.com/Corvimae). Though I have some experience 
 making web applications accessibile, I'm not an accessibilty engineer, and so it's very likely the implementation here
 is flawed.
 

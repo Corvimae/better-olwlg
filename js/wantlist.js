@@ -27,7 +27,8 @@ function addColumnNames(row) {
 }
 
 function addInstructionDivNames() {
-	const contentDiv = document.body.children[1];
+	// This is a bad way to do this.
+	const contentDiv = document.body.children[5];
 
 	contentDiv.classList.add("main-content");
 

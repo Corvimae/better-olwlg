@@ -93,7 +93,8 @@ const autoDuplicateModifications = [
 ];
 
 export default function modifyContent() {
-	const content = document.querySelector(".header").nextElementSibling;
+	// This is bad.
+	const content = document.body.children[5];
 
 	content.classList.add("content");
 
@@ -101,8 +102,10 @@ export default function modifyContent() {
 
 	const helpText = document.querySelector("#gamedesc");
 
-	helpText.classList.add("alert", "info", "help-text");
-	helpText.removeAttribute("id");
+	if(helpText) {
+		helpText.classList.add("alert", "info", "help-text");
+		helpText.removeAttribute("id");
+	}
 
 	window.modifyDiv(document.querySelector("#dummy"), duplicateProtectionModifications);
 

@@ -559,6 +559,10 @@ img[src*="photo.gif"] {
 	margin: 0 auto;
 }
 
+.main-content {
+	margin-top: 30px !important;
+}
+
 .main-content img[src*="magglass.jpg"] {
 	position: relative;
 	top: 6px;

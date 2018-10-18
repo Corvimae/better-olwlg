@@ -1,16 +1,9 @@
 window.OLWLG = {};
 
-const headerElement = document.querySelector("body > div:first-of-type");
+const headerContent = document.querySelector("#navbar");
 
-// Only add the header if a header is present.
-if(headerElement && headerElement.textContent.indexOf("Navigation") !== -1) {
-	const headerContainer = document.body.children[0];
-
-	headerContainer.classList.add("header");
-
-	const headerContent = headerContainer.children[0];
-
-	headerContent.classList.add("header-content");
+if(headerContent) {
+	headerContent.classList.add("header", "header-content");
 
 	let reachedUserOptions = false;
 
@@ -179,7 +172,7 @@ if(headerElement && headerElement.textContent.indexOf("Navigation") !== -1) {
 	const footer = document.createElement("div");
 
 	footer.innerHTML = `
-Improvements from <a href="https://boardgamegeek.com/user/acceptableice">AcceptableIce</a>'s <a href="https://github.com/acceptableice/better-olwlg">Better OLWLG</a>.
+Improvements from <a href="https://boardgamegeek.com/user/corvimae">Corvimae</a>'s <a href="https://github.com/Corvimae/better-olwlg">Better OLWLG</a>.
 <a href="https://icons8.com">Icon pack by Icons8</a>.
 `;
 

@@ -1,8 +1,12 @@
 import Vue from "vue";
 import WantsEditor from "better-olwlg-wants-editor";
 
+const table = document.querySelector("#wants");
+
 function getHiddenValue(name) {
-	return document.querySelector(`input[name="${name}"]`).value;
+	const element = document.querySelector(`input[name="${name}"]`);
+
+	return element && element.value;
 }
 
 export default function mountTable() {
@@ -12,8 +16,6 @@ export default function mountTable() {
 		wants: [],
 		listings: []
 	};
-
-	const table = document.querySelector("#wants");
 
 	const matchId = (element, prefix, dummyClass) => {
 		const idAttribute = element.getAttribute("id");

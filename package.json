@@ -1,6 +1,6 @@
 {
   "name": "better-olwlg",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Chrome extension to improve the OLWLG.",
   "main": "index.js",
   "directories": {
@@ -14,16 +14,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AcceptableIce/better-olwlg.git"
+    "url": "git+https://github.com/Corvimae/better-olwlg.git"
   },
-  "author": "AcceptableIce",
+  "author": "Corvimae",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AcceptableIce/better-olwlg/issues"
+    "url": "https://github.com/Corvimae/better-olwlg/issues"
   },
-  "homepage": "https://github.com/AcceptableIce/better-olwlg#readme",
+  "homepage": "https://github.com/Corvimae/better-olwlg#readme",
   "devDependencies": {
-    "better-olwlg-wants-editor": "git@github.com:AcceptableIce/better-olwlg-wants-editor.git",
+    "better-olwlg-wants-editor": "git@github.com:Corvimae/better-olwlg-wants-editor.git",
     "copy-webpack-plugin": "^4.5.2",
     "vue": "^2.5.17",
     "vue-loader": "^15.4.2",
